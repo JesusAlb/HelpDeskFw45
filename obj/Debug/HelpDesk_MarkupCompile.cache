@@ -1,0 +1,20 @@
+﻿HelpDesk
+
+
+winexe
+C#
+.cs
+C:\Users\Jesús Ocaña\Documents\Visual Studio 2013\Projects\WpfApplication1\HelpDeskFw45\obj\Debug\
+HelpDesk
+none
+false
+DEBUG;TRACE
+C:\Users\Jesús Ocaña\Documents\Visual Studio 2013\Projects\WpfApplication1\HelpDeskFw45\App.xaml
+311762132248
+
+123-2082417743
+271852764223
+Principal\hdk_ViewAcceso.xaml;Principal\hdk_ViewMenu.xaml;ViewAltas\Catálogo\hdk_ViewAltaArea.xaml;ViewAltas\Catálogo\hdk_ViewAltaCoordinacion.xaml;ViewAltas\Catálogo\hdk_ViewAltaDepartamento.xaml;ViewAltas\Catálogo\hdk_ViewAltaLugar.xaml;ViewAltas\Catálogo\hdk_ViewAltaMarca.xaml;ViewAltas\Catálogo\hdk_ViewAltaPuesto.xaml;ViewAltas\Catálogo\hdk_ViewAltaRequerimiento.xaml;ViewAltas\Catálogo\hdk_ViewAltaTipoEquipo.xaml;ViewAltas\Catálogo\hdk_ViewAltaTipoIncidencia.xaml;ViewAltas\Control\hdk_ViewAltaEquipo.xaml;ViewAltas\Control\hdk_ViewAltaUsuario.xaml;ViewAltas\Solicitudes\Eventos\hdk_ViewAltaEventos.xaml;ViewAltas\Solicitudes\Eventos\hdk_ViewAltaReqCuantificables.xaml;ViewAltas\Solicitudes\hdk_ViewEncuesta.xaml;ViewAltas\Solicitudes\Incidentes\hdk_ViewAltaIncidenteCompleto.xaml;ViewAltas\Solicitudes\Incidentes\hdk_ViewAltaIncidentes.xaml;ViewAltas\Solicitudes\Incidentes\hdk_ViewAsignarSoporte.xaml;ViewAltas\Solicitudes\Incidentes\hdk_ViewCerrarIncidente.xaml;ViewReportes\hdk_ViewMenuEstadisticas.xaml;ViewReportes\hdk_ViewMenuReporte.xaml;View\Catálogos\hdk_VistaCatalogosEquipos.xaml;View\Catálogos\hdk_VistaCatalogosSolicitudes.xaml;View\Catálogos\hdk_VistaCatalogosUsuarios.xaml;View\Control\hdk_ViewEquipos.xaml;View\Control\hdk_ViewUsuarioDetalle.xaml;View\Solicitudes\Eventos\hdk_ViewAsigReq.xaml;View\Solicitudes\Eventos\hdk_ViewEvento.xaml;View\Solicitudes\Incidentes\hdk_ViewIncidentes.xaml;View\Control\hdk_ViewUsuario.xaml;
+
+False
+

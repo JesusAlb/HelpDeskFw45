@@ -1,0 +1,60 @@
+﻿<Window x:Class="HelpDesk.ViewAltas.Catálogo.hdk_ViewAltaTipoEquipo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Help Desk - Alta de tipos de equipo" Height="429.018" Width="450.805" FontSize="13"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        WindowStyle="None" Icon="/HelpDesk;component/Imagenes/diseno_icono.png"
+        AllowsTransparency="True" Background="Transparent">
+
+    <Border Margin="10" BorderBrush="Red" BorderThickness="0.5" CornerRadius="15" Background="white">
+        <Border.Effect>
+            <DropShadowEffect Color="Black"
+                          Direction="320"
+                          BlurRadius="15"
+                          ShadowDepth="3" />
+        </Border.Effect>
+        <DockPanel LastChildFill="True" Background="Transparent" Margin="-2,0,2,0">
+            <Grid DockPanel.Dock="Top" Height="25">
+                <TextBlock VerticalAlignment="Center" Text="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                       HorizontalAlignment="Center" />
+                <Image Source="../../Imagenes/diseno_icono.png" VerticalAlignment="Bottom" Width="20" Height="20" Margin="9,0,401,1"/>
+                <Rectangle Name="titleBar"
+                       Fill="Transparent"
+                       MouseLeftButtonDown="titleBar_MouseLeftButtonDown"/>
+                <Button Name="closeButton"
+                    Style="{StaticResource CerrarStyle}"
+                    HorizontalAlignment="Right"
+                    Width="15" Margin="0,0,5,0" Height="15"
+                    Click="closeButton_Click"/>
+                <Button Name="minButton"
+                    Style="{StaticResource MinimizarStyle}"
+                    HorizontalAlignment="Right"
+                    Width="15" Margin="0,0,25,0" Height="9"
+                    Click="minButton_Click"/>
+            </Grid>
+
+            <Grid>
+                <Label Content="Nombre " HorizontalAlignment="Left" Margin="47,14,0,0" FontSize="16" VerticalAlignment="Top"/>
+                <TextBox Margin="127,0,0,337" MaxLength="30" VerticalContentAlignment="Center" HorizontalAlignment="Left" Name="txtTipoEquipo" Height="31" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="253" PreviewTextInput="tipoEq_PreviewTextInput" />
+                <GroupBox BorderBrush="black" Header="Características a capturar" FontSize="15" HorizontalAlignment="Left" Margin="49,64,0,0" VerticalAlignment="Top" Height="248" Width="333">
+                    <Grid>
+                        <CheckBox x:Name="equipo" Content="Marca del equipo" HorizontalAlignment="Left" Margin="14,10,0,0" VerticalAlignment="Top" IsEnabled="False" IsChecked="True"/>
+                        <CheckBox Name="dd" Content="Capacidad de almacenamiento" HorizontalAlignment="Left" Margin="14,32,0,0" VerticalAlignment="Top"/>
+                        <CheckBox x:Name="procesador" Content="Velocidad del reloj del procesador" HorizontalAlignment="Left" Margin="14,56,0,0" VerticalAlignment="Top"/>
+                        <CheckBox x:Name="ram" Content="Capacidad de RAM" HorizontalAlignment="Left" Margin="14,80,0,0" VerticalAlignment="Top"/>
+                        <CheckBox Name="red" Content="Direcciones de red" HorizontalAlignment="Left" Margin="14,102,0,0" VerticalAlignment="Top"/>
+                        <CheckBox Name="monitor" Content="Marca del Monitor" HorizontalAlignment="Left" Margin="14,125,0,0" VerticalAlignment="Top"/>
+                        <CheckBox Name="teclado" Content="Marca del teclado" HorizontalAlignment="Left" Margin="14,149,0,0" VerticalAlignment="Top"/>
+                        <CheckBox Name="mouse" Content="Marca del mouse" HorizontalAlignment="Left" Margin="14,172,0,0" VerticalAlignment="Top"/>
+                        <CheckBox x:Name="chSeleccionar" Content="Seleccionar todas las características" HorizontalAlignment="Left" Margin="14,195,0,0" VerticalAlignment="Top" Checked="chSeleccionar_Checked" Unchecked="chSeleccionar_Unchecked"/>
+
+
+
+
+                    </Grid>
+                </GroupBox>
+                <Button Style="{StaticResource BotonAceptarStyle}" FontSize="16" Content="Añadir" Name="btnAñadir" HorizontalAlignment="Left" Margin="182,324,0,0"  VerticalAlignment="Top" Width="75" Click="añadir_Click" RenderTransformOrigin="0.48,-0.423" IsDefault="True"/>
+            </Grid>
+        </DockPanel>
+    </Border>
+</Window>

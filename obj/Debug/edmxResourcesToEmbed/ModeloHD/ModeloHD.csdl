@@ -1,0 +1,1173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbhelpdeskModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblarea">
+    <Key>
+      <PropertyRef Name="idArea" />
+    </Key>
+    <Property Name="idArea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tblusuarios" Relationship="Self.area" FromRole="tblarea" ToRole="tblusuarios" />
+  </EntityType>
+  <EntityType Name="tblcalidadservicio">
+    <Key>
+      <PropertyRef Name="idCalidad_Servicio" />
+    </Key>
+    <Property Name="idCalidad_Servicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="observacionesServicio" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="incidente" Type="Int32" />
+    <Property Name="statusCal_Servicio" Type="Boolean" Nullable="false" />
+    <Property Name="evento" Type="Int32" />
+    <Property Name="promedioCalidad" Type="Double" />
+    <NavigationProperty Name="tblevento" Relationship="Self.eventoa" FromRole="tblcalidadservicio" ToRole="tblevento" />
+    <NavigationProperty Name="tblincidente" Relationship="Self.incidente" FromRole="tblcalidadservicio" ToRole="tblincidente" />
+    <NavigationProperty Name="tblrespuestas" Relationship="Self.servicioCalidad" FromRole="tblcalidadservicio" ToRole="tblrespuesta" />
+  </EntityType>
+  <EntityType Name="tblcoordinacion">
+    <Key>
+      <PropertyRef Name="idCoordinacion" />
+    </Key>
+    <Property Name="idCoordinacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomCoordinacion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbldepartamentos" Relationship="Self.coordinacion" FromRole="tblcoordinacion" ToRole="tbldepartamentos" />
+  </EntityType>
+  <EntityType Name="tbldepartamento">
+    <Key>
+      <PropertyRef Name="idDepto" />
+    </Key>
+    <Property Name="idDepto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomDepto" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="coordinacion" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblcoordinacion" Relationship="Self.coordinacion" FromRole="tbldepartamentos" ToRole="tblcoordinacion" />
+    <NavigationProperty Name="tblusuarios" Relationship="Self.depto" FromRole="tbldepartamentos" ToRole="tblusuarios" />
+  </EntityType>
+  <EntityType Name="tblevento">
+    <Key>
+      <PropertyRef Name="idEvento" />
+    </Key>
+    <Property Name="idEvento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="solicitante" Type="Int32" Nullable="false" />
+    <Property Name="responsable" Type="Int32" Nullable="false" />
+    <Property Name="apoyo" Type="Int32" Nullable="false" />
+    <Property Name="fecha_Sol" Type="DateTime" Precision="3" />
+    <Property Name="lugar" Type="Int32" />
+    <Property Name="asistencia_aprox" Type="Int32" />
+    <Property Name="tipo_evento" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="acomodo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="horaIn" Type="DateTime" Precision="3" />
+    <Property Name="horaFn" Type="DateTime" Precision="3" />
+    <Property Name="fecha_cierre" Type="DateTime" Precision="3" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="FechaInicio" Type="DateTime" Precision="3" />
+    <Property Name="observaciones" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="titulo" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tblcalidadservicios" Relationship="Self.eventoa" FromRole="tblevento" ToRole="tblcalidadservicio" />
+    <NavigationProperty Name="tblusuario" Relationship="Self.apoyo" FromRole="tblevento" ToRole="tblusuarios" />
+    <NavigationProperty Name="tblrequerimientoaeventoes" Relationship="Self.evento" FromRole="tblevento" ToRole="tblrequerimientoaevento" />
+    <NavigationProperty Name="tbllugar" Relationship="Self.lugar_" FromRole="tblevento" ToRole="tbllugar" />
+    <NavigationProperty Name="tblusuario1" Relationship="Self.responsable" FromRole="tblevento" ToRole="tblusuarios" />
+    <NavigationProperty Name="tblusuario2" Relationship="Self.solicitante2" FromRole="tblevento" ToRole="tblusuarios" />
+  </EntityType>
+  <EntityType Name="tblincidente">
+    <Key>
+      <PropertyRef Name="numIncidente" />
+    </Key>
+    <Property Name="numIncidente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="solicitante" Type="Int32" Nullable="false" />
+    <Property Name="prioridad" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_Sol" Type="DateTime" Precision="3" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="horaIn" Type="DateTime" Precision="3" />
+    <Property Name="horaFn" Type="DateTime" Precision="3" />
+    <Property Name="fecha_Cierre" Type="DateTime" Precision="3" />
+    <Property Name="soporte" Type="Int32" Nullable="false" />
+    <Property Name="acciones" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="solucion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="seguimiento" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblcalidadservicios" Relationship="Self.incidente" FromRole="tblincidente" ToRole="tblcalidadservicio" />
+    <NavigationProperty Name="tblusuario" Relationship="Self.seguimiento" FromRole="tblincidente" ToRole="tblusuarios" />
+    <NavigationProperty Name="tblusuario1" Relationship="Self.solicitante" FromRole="tblincidente" ToRole="tblusuarios" />
+    <NavigationProperty Name="tblusuario2" Relationship="Self.soporte" FromRole="tblincidente" ToRole="tblusuarios" />
+    <NavigationProperty Name="tbltipoincidencia" Relationship="Self.tipo" FromRole="tblincidente" ToRole="tbltipoincidencia" />
+  </EntityType>
+  <EntityType Name="tblinstitucion">
+    <Key>
+      <PropertyRef Name="idInstitucion" />
+    </Key>
+    <Property Name="idInstitucion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomInstitucion" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="correoInstitucion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tblusuarios" Relationship="Self.Institucion" FromRole="tblinstitucion" ToRole="tblusuarios" />
+  </EntityType>
+  <EntityType Name="tbllugar">
+    <Key>
+      <PropertyRef Name="idLugar" />
+    </Key>
+    <Property Name="idLugar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomLugar" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbleventoes" Relationship="Self.lugar_" FromRole="tbllugar" ToRole="tblevento" />
+  </EntityType>
+  <EntityType Name="tblmarca">
+    <Key>
+      <PropertyRef Name="idMarca" />
+    </Key>
+    <Property Name="idMarca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomMarca" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tblresponsablequipoes" Relationship="Self.marcaEquipo" FromRole="tblmarca" ToRole="tblresponsablequipo" />
+    <NavigationProperty Name="tblresponsablequipoes1" Relationship="Self.marcaMonitor" FromRole="tblmarca" ToRole="tblresponsablequipo" />
+    <NavigationProperty Name="tblresponsablequipoes2" Relationship="Self.marcaMouse" FromRole="tblmarca" ToRole="tblresponsablequipo" />
+    <NavigationProperty Name="tblresponsablequipoes3" Relationship="Self.marcaTeclado" FromRole="tblmarca" ToRole="tblresponsablequipo" />
+  </EntityType>
+  <EntityType Name="tblpregunta">
+    <Key>
+      <PropertyRef Name="idPregunta" />
+    </Key>
+    <Property Name="idPregunta" Type="Int32" Nullable="false" />
+    <Property Name="txtPregunta" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="statusPregunta" Type="Boolean" Nullable="false" />
+    <Property Name="afinidad" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblrespuestas" Relationship="Self.pregunta" FromRole="tblpregunta" ToRole="tblrespuesta" />
+  </EntityType>
+  <EntityType Name="tblpuesto">
+    <Key>
+      <PropertyRef Name="idPuesto" />
+    </Key>
+    <Property Name="idPuesto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomPuesto" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tblusuarios" Relationship="Self.puesto" FromRole="tblpuesto" ToRole="tblusuarios" />
+  </EntityType>
+  <EntityType Name="tblrequerimientoaevento">
+    <Key>
+      <PropertyRef Name="evento" />
+      <PropertyRef Name="requerimiento" />
+    </Key>
+    <Property Name="evento" Type="Int32" Nullable="false" />
+    <Property Name="requerimiento" Type="Int32" Nullable="false" />
+    <Property Name="cantidad" Type="Int32" />
+    <NavigationProperty Name="tblevento" Relationship="Self.evento" FromRole="tblrequerimientoaevento" ToRole="tblevento" />
+    <NavigationProperty Name="tblrequerimiento" Relationship="Self.requerimiento" FromRole="tblrequerimientoaevento" ToRole="tblrequerimientos" />
+  </EntityType>
+  <EntityType Name="tblrequerimiento">
+    <Key>
+      <PropertyRef Name="idRequerimientos" />
+    </Key>
+    <Property Name="idRequerimientos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="nomRequerimiento" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tblrequerimientoaeventoes" Relationship="Self.requerimiento" FromRole="tblrequerimientos" ToRole="tblrequerimientoaevento" />
+  </EntityType>
+  <EntityType Name="tblresponsablequipo">
+    <Key>
+      <PropertyRef Name="idResponEq" />
+    </Key>
+    <Property Name="idResponEq" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="responsable" Type="Int32" Nullable="false" />
+    <Property Name="tipoEquipo" Type="Int32" Nullable="false" />
+    <Property Name="marcaEquipo" Type="Int32" Nullable="false" />
+    <Property Name="serieEquipo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="memoriaRam" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="discoDuro" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="marcaMonitor" Type="Int32" Nullable="false" />
+    <Property Name="serieMonitor" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ip" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mac" Type="String" MaxLength="17" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="marcaMouse" Type="Int32" Nullable="false" />
+    <Property Name="serieMouse" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="marcaTeclado" Type="Int32" Nullable="false" />
+    <Property Name="serieTeclado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="procesador" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tblmarca" Relationship="Self.marcaEquipo" FromRole="tblresponsablequipo" ToRole="tblmarca" />
+    <NavigationProperty Name="tblmarca1" Relationship="Self.marcaMonitor" FromRole="tblresponsablequipo" ToRole="tblmarca" />
+    <NavigationProperty Name="tblmarca2" Relationship="Self.marcaMouse" FromRole="tblresponsablequipo" ToRole="tblmarca" />
+    <NavigationProperty Name="tblmarca3" Relationship="Self.marcaTeclado" FromRole="tblresponsablequipo" ToRole="tblmarca" />
+    <NavigationProperty Name="tblusuario" Relationship="Self.respon" FromRole="tblresponsablequipo" ToRole="tblusuarios" />
+    <NavigationProperty Name="tbltipoequipo" Relationship="Self.tipoE" FromRole="tblresponsablequipo" ToRole="tbltipoequipo" />
+  </EntityType>
+  <EntityType Name="tblrespuesta">
+    <Key>
+      <PropertyRef Name="idRespuesta" />
+    </Key>
+    <Property Name="idRespuesta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="valorRespuesta" Type="Int32" Nullable="false" />
+    <Property Name="pregunta" Type="Int32" Nullable="false" />
+    <Property Name="calidadServicio" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblcalidadservicio" Relationship="Self.servicioCalidad" FromRole="tblrespuesta" ToRole="tblcalidadservicio" />
+    <NavigationProperty Name="tblpregunta" Relationship="Self.pregunta" FromRole="tblrespuesta" ToRole="tblpregunta" />
+  </EntityType>
+  <EntityType Name="tbltipoequipo">
+    <Key>
+      <PropertyRef Name="idTipoEquipo" />
+    </Key>
+    <Property Name="idTipoEquipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomTipoEquipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="siMonitor" Type="Boolean" Nullable="false" />
+    <Property Name="siEquipo" Type="Boolean" Nullable="false" />
+    <Property Name="siDiscoDuro" Type="Boolean" Nullable="false" />
+    <Property Name="siMouse" Type="Boolean" Nullable="false" />
+    <Property Name="siTeclado" Type="Boolean" Nullable="false" />
+    <Property Name="siRed" Type="Boolean" Nullable="false" />
+    <Property Name="siRAM" Type="Boolean" Nullable="false" />
+    <Property Name="siProcesador" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tblresponsablequipoes" Relationship="Self.tipoE" FromRole="tbltipoequipo" ToRole="tblresponsablequipo" />
+  </EntityType>
+  <EntityType Name="tbltipoincidencia">
+    <Key>
+      <PropertyRef Name="idTipoIncidente" />
+    </Key>
+    <Property Name="idTipoIncidente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomTipoIncidente" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tblincidentes" Relationship="Self.tipo" FromRole="tbltipoincidencia" ToRole="tblincidente" />
+  </EntityType>
+  <EntityType Name="tblusuario">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomCompleto" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nomUsuario" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tipoUsuario" Type="Int32" Nullable="false" />
+    <Property Name="depto" Type="Int32" Nullable="false" />
+    <Property Name="exTel" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="area" Type="Int32" Nullable="false" />
+    <Property Name="puesto" Type="Int32" Nullable="false" />
+    <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="institucion" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblarea" Relationship="Self.area" FromRole="tblusuarios" ToRole="tblarea" />
+    <NavigationProperty Name="tbldepartamento" Relationship="Self.depto" FromRole="tblusuarios" ToRole="tbldepartamentos" />
+    <NavigationProperty Name="tbleventoes" Relationship="Self.apoyo" FromRole="tblusuarios" ToRole="tblevento" />
+    <NavigationProperty Name="tbleventoes1" Relationship="Self.responsable" FromRole="tblusuarios" ToRole="tblevento" />
+    <NavigationProperty Name="tbleventoes2" Relationship="Self.solicitante2" FromRole="tblusuarios" ToRole="tblevento" />
+    <NavigationProperty Name="tblincidentes" Relationship="Self.seguimiento" FromRole="tblusuarios" ToRole="tblincidente" />
+    <NavigationProperty Name="tblincidentes1" Relationship="Self.solicitante" FromRole="tblusuarios" ToRole="tblincidente" />
+    <NavigationProperty Name="tblincidentes2" Relationship="Self.soporte" FromRole="tblusuarios" ToRole="tblincidente" />
+    <NavigationProperty Name="tblinstitucion" Relationship="Self.Institucion" FromRole="tblusuarios" ToRole="tblinstitucion" />
+    <NavigationProperty Name="tblpuesto" Relationship="Self.puesto" FromRole="tblusuarios" ToRole="tblpuesto" />
+    <NavigationProperty Name="tblresponsablequipoes" Relationship="Self.respon" FromRole="tblusuarios" ToRole="tblresponsablequipo" />
+  </EntityType>
+  <EntityType Name="cantidadincidentespordepto">
+    <Key>
+      <PropertyRef Name="Departamento" />
+    </Key>
+    <Property Name="Departamento" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cantidad" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ViewCoordinacion">
+    <Key>
+      <PropertyRef Name="idCoordinacion" />
+    </Key>
+    <Property Name="idCoordinacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomCoordinacion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ViewDepartamento">
+    <Key>
+      <PropertyRef Name="idDepto" />
+      <PropertyRef Name="nomDepto" />
+      <PropertyRef Name="coordinacion" />
+    </Key>
+    <Property Name="idDepto" Type="Int32" Nullable="false" />
+    <Property Name="nomDepto" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nomCoordinacion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="coordinacion" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ViewEventoConRequerimiento">
+    <Key>
+      <PropertyRef Name="evento" />
+      <PropertyRef Name="titulo" />
+      <PropertyRef Name="nomLugar" />
+      <PropertyRef Name="nomRequerimiento" />
+      <PropertyRef Name="idRequerimientos" />
+    </Key>
+    <Property Name="evento" Type="Int32" Nullable="false" />
+    <Property Name="cantidad" Type="Int32" />
+    <Property Name="asistencia_aprox" Type="Int32" />
+    <Property Name="tipo_evento" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="acomodo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="horaIn" Type="DateTime" Precision="3" />
+    <Property Name="horaFn" Type="DateTime" Precision="3" />
+    <Property Name="FechaInicio" Type="DateTime" Precision="3" />
+    <Property Name="observaciones" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="titulo" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nomLugar" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nomCoordinacion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="nomRequerimiento" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idRequerimientos" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ViewMarca">
+    <Key>
+      <PropertyRef Name="idMarca" />
+      <PropertyRef Name="nomMarca" />
+    </Key>
+    <Property Name="idMarca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomMarca" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ViewRequerimiento">
+    <Key>
+      <PropertyRef Name="idRequerimientos" />
+      <PropertyRef Name="nomRequerimiento" />
+    </Key>
+    <Property Name="idRequerimientos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="nomRequerimiento" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ViewTipoIncidencia">
+    <Key>
+      <PropertyRef Name="idTipoIncidente" />
+      <PropertyRef Name="nomTipoIncidente" />
+    </Key>
+    <Property Name="idTipoIncidente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomTipoIncidente" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ViewUsuario">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+      <PropertyRef Name="nomCompleto" />
+      <PropertyRef Name="nomUsuario" />
+      <PropertyRef Name="password" />
+      <PropertyRef Name="tipoUsuarioString" />
+      <PropertyRef Name="nomDepto" />
+      <PropertyRef Name="nomArea" />
+      <PropertyRef Name="nomPuesto" />
+      <PropertyRef Name="tipoUsuario" />
+      <PropertyRef Name="correo" />
+      <PropertyRef Name="nomInstitucion" />
+    </Key>
+    <Property Name="idUsuario" Type="Int32" Nullable="false" />
+    <Property Name="nomCompleto" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nomUsuario" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tipoUsuarioString" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="exTel" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="nomDepto" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nomCoordinacion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="nomArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nomPuesto" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tipoUsuario" Type="Int32" Nullable="false" />
+    <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nomInstitucion" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VistaEncuesta">
+    <Key>
+      <PropertyRef Name="idPregunta" />
+      <PropertyRef Name="txtPregunta" />
+      <PropertyRef Name="statusPregunta" />
+      <PropertyRef Name="afinidad" />
+      <PropertyRef Name="valorRespuesta" />
+      <PropertyRef Name="idCalidad_Servicio" />
+      <PropertyRef Name="observacionesServicio" />
+      <PropertyRef Name="statusCal_Servicio" />
+    </Key>
+    <Property Name="numPregunta" Type="Int64" />
+    <Property Name="idPregunta" Type="Int32" Nullable="false" />
+    <Property Name="txtPregunta" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="statusPregunta" Type="Boolean" Nullable="false" />
+    <Property Name="afinidad" Type="Int32" Nullable="false" />
+    <Property Name="valorRespuesta" Type="Int32" Nullable="false" />
+    <Property Name="idCalidad_Servicio" Type="Int32" Nullable="false" />
+    <Property Name="observacionesServicio" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="statusCal_Servicio" Type="Boolean" Nullable="false" />
+    <Property Name="incidente" Type="Int32" />
+    <Property Name="evento" Type="Int32" />
+  </EntityType>
+  <EntityType Name="VistaEquipoReporte">
+    <Key>
+      <PropertyRef Name="idResponEq" />
+      <PropertyRef Name="nomTipoEquipo" />
+      <PropertyRef Name="nomMarcaEquipo" />
+      <PropertyRef Name="serieEquipo" />
+      <PropertyRef Name="nomMarcaMonitor" />
+      <PropertyRef Name="serieMonitor" />
+      <PropertyRef Name="ip" />
+      <PropertyRef Name="mac" />
+      <PropertyRef Name="nomMarcaMouse" />
+      <PropertyRef Name="serieMouse" />
+      <PropertyRef Name="nomMarcaTeclado" />
+      <PropertyRef Name="serieTeclado" />
+      <PropertyRef Name="procesador" />
+      <PropertyRef Name="nomCompleto" />
+      <PropertyRef Name="nomDepto" />
+      <PropertyRef Name="nomArea" />
+      <PropertyRef Name="nomPuesto" />
+    </Key>
+    <Property Name="idResponEq" Type="Int32" Nullable="false" />
+    <Property Name="nomTipoEquipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nomMarcaEquipo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="serieEquipo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="memoriaRam" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="discoDuro" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="nomMarcaMonitor" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="serieMonitor" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ip" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mac" Type="String" MaxLength="17" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nomMarcaMouse" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="serieMouse" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nomMarcaTeclado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="serieTeclado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="procesador" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nomCompleto" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nomDepto" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nomCoordinacion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="nomArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nomPuesto" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VistaEquipos">
+    <Key>
+      <PropertyRef Name="idResponEq" />
+      <PropertyRef Name="nomCompleto" />
+      <PropertyRef Name="nomTipoEquipo" />
+      <PropertyRef Name="nomMarcaEquipo" />
+      <PropertyRef Name="serieEquipo" />
+      <PropertyRef Name="memoriaRam" />
+      <PropertyRef Name="discoDuro" />
+      <PropertyRef Name="nomMarcaMonitor" />
+      <PropertyRef Name="serieMonitor" />
+      <PropertyRef Name="ip" />
+      <PropertyRef Name="mac" />
+      <PropertyRef Name="nomMarcaMouse" />
+      <PropertyRef Name="serieMouse" />
+      <PropertyRef Name="nomMarcaTeclado" />
+      <PropertyRef Name="serieTeclado" />
+      <PropertyRef Name="procesador" />
+    </Key>
+    <Property Name="idResponEq" Type="Int32" Nullable="false" />
+    <Property Name="nomCompleto" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nomTipoEquipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nomMarcaEquipo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="serieEquipo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="memoriaRam" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="discoDuro" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nomMarcaMonitor" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="serieMonitor" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ip" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mac" Type="String" MaxLength="17" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nomMarcaMouse" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="serieMouse" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nomMarcaTeclado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="serieTeclado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="procesador" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VistaEvento">
+    <Key>
+      <PropertyRef Name="idEvento" />
+      <PropertyRef Name="descripcion" />
+      <PropertyRef Name="solicitante" />
+      <PropertyRef Name="responsable" />
+      <PropertyRef Name="apoyo" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="idSolicitante" />
+      <PropertyRef Name="idResponsable" />
+      <PropertyRef Name="idApoyo" />
+      <PropertyRef Name="lugar" />
+      <PropertyRef Name="titulo" />
+      <PropertyRef Name="statusCal_Servicio" />
+      <PropertyRef Name="idCalidad_Servicio" />
+      <PropertyRef Name="observacionesServicio" />
+    </Key>
+    <Property Name="idEvento" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="solicitante" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="responsable" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apoyo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_Sol" Type="DateTime" Precision="3" />
+    <Property Name="asistencia_aprox" Type="Int32" />
+    <Property Name="tipo_evento" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="acomodo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="horaIn" Type="DateTime" Precision="3" />
+    <Property Name="horaFn" Type="DateTime" Precision="3" />
+    <Property Name="fecha_cierre" Type="DateTime" Precision="3" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="FechaInicio" Type="DateTime" Precision="3" />
+    <Property Name="idSolicitante" Type="Int32" Nullable="false" />
+    <Property Name="idResponsable" Type="Int32" Nullable="false" />
+    <Property Name="idApoyo" Type="Int32" Nullable="false" />
+    <Property Name="lugar" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="observaciones" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="titulo" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="statusCal_Servicio" Type="Boolean" Nullable="false" />
+    <Property Name="idCalidad_Servicio" Type="Int32" Nullable="false" />
+    <Property Name="observacionesServicio" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="promedioCalidad" Type="Double" />
+  </EntityType>
+  <EntityType Name="VistaIncidente">
+    <Key>
+      <PropertyRef Name="numIncidente" />
+      <PropertyRef Name="solicitante" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="soporte" />
+      <PropertyRef Name="seguimiento" />
+      <PropertyRef Name="idSolicitante" />
+      <PropertyRef Name="idSoporte" />
+      <PropertyRef Name="idSeguimiento" />
+      <PropertyRef Name="tipo" />
+      <PropertyRef Name="statusCal_Servicio" />
+      <PropertyRef Name="idCalidad_Servicio" />
+      <PropertyRef Name="observacionesServicio" />
+    </Key>
+    <Property Name="numIncidente" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="solicitante" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prioridad" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_Sol" Type="DateTime" Precision="3" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="horaIn" Type="DateTime" Precision="3" />
+    <Property Name="horaFn" Type="DateTime" Precision="3" />
+    <Property Name="fecha_Cierre" Type="DateTime" Precision="0" />
+    <Property Name="soporte" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="acciones" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="solucion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="seguimiento" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idSolicitante" Type="Int32" Nullable="false" />
+    <Property Name="idSoporte" Type="Int32" Nullable="false" />
+    <Property Name="idSeguimiento" Type="Int32" Nullable="false" />
+    <Property Name="tipo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="statusCal_Servicio" Type="Boolean" Nullable="false" />
+    <Property Name="idCalidad_Servicio" Type="Int32" Nullable="false" />
+    <Property Name="observacionesServicio" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="promedioCalidad" Type="Double" />
+  </EntityType>
+  <EntityType Name="VistaPregunta">
+    <Key>
+      <PropertyRef Name="idPregunta" />
+      <PropertyRef Name="txtPregunta" />
+      <PropertyRef Name="statusPregunta" />
+      <PropertyRef Name="afinidad" />
+    </Key>
+    <Property Name="numPregunta" Type="Int64" />
+    <Property Name="idPregunta" Type="Int32" Nullable="false" />
+    <Property Name="txtPregunta" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="statusPregunta" Type="Boolean" Nullable="false" />
+    <Property Name="afinidad" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="area">
+    <End Role="tblarea" Type="Self.tblarea" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblusuarios" Type="Self.tblusuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblarea">
+        <PropertyRef Name="idArea" />
+      </Principal>
+      <Dependent Role="tblusuarios">
+        <PropertyRef Name="area" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="eventoa">
+    <End Role="tblevento" Type="Self.tblevento" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblcalidadservicio" Type="Self.tblcalidadservicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblevento">
+        <PropertyRef Name="idEvento" />
+      </Principal>
+      <Dependent Role="tblcalidadservicio">
+        <PropertyRef Name="evento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="incidente">
+    <End Role="tblincidente" Type="Self.tblincidente" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblcalidadservicio" Type="Self.tblcalidadservicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblincidente">
+        <PropertyRef Name="numIncidente" />
+      </Principal>
+      <Dependent Role="tblcalidadservicio">
+        <PropertyRef Name="incidente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="servicioCalidad">
+    <End Role="tblcalidadservicio" Type="Self.tblcalidadservicio" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblrespuesta" Type="Self.tblrespuesta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblcalidadservicio">
+        <PropertyRef Name="idCalidad_Servicio" />
+      </Principal>
+      <Dependent Role="tblrespuesta">
+        <PropertyRef Name="calidadServicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="coordinacion">
+    <End Role="tblcoordinacion" Type="Self.tblcoordinacion" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbldepartamentos" Type="Self.tbldepartamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblcoordinacion">
+        <PropertyRef Name="idCoordinacion" />
+      </Principal>
+      <Dependent Role="tbldepartamentos">
+        <PropertyRef Name="coordinacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="depto">
+    <End Role="tbldepartamentos" Type="Self.tbldepartamento" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblusuarios" Type="Self.tblusuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbldepartamentos">
+        <PropertyRef Name="idDepto" />
+      </Principal>
+      <Dependent Role="tblusuarios">
+        <PropertyRef Name="depto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="apoyo">
+    <End Role="tblusuarios" Type="Self.tblusuario" Multiplicity="1" />
+    <End Role="tblevento" Type="Self.tblevento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblusuarios">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="tblevento">
+        <PropertyRef Name="apoyo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="evento">
+    <End Role="tblevento" Type="Self.tblevento" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblrequerimientoaevento" Type="Self.tblrequerimientoaevento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblevento">
+        <PropertyRef Name="idEvento" />
+      </Principal>
+      <Dependent Role="tblrequerimientoaevento">
+        <PropertyRef Name="evento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="lugar_">
+    <End Role="tbllugar" Type="Self.tbllugar" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblevento" Type="Self.tblevento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbllugar">
+        <PropertyRef Name="idLugar" />
+      </Principal>
+      <Dependent Role="tblevento">
+        <PropertyRef Name="lugar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="responsable">
+    <End Role="tblusuarios" Type="Self.tblusuario" Multiplicity="1" />
+    <End Role="tblevento" Type="Self.tblevento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblusuarios">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="tblevento">
+        <PropertyRef Name="responsable" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="solicitante2">
+    <End Role="tblusuarios" Type="Self.tblusuario" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblevento" Type="Self.tblevento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblusuarios">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="tblevento">
+        <PropertyRef Name="solicitante" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="seguimiento">
+    <End Role="tblusuarios" Type="Self.tblusuario" Multiplicity="1" />
+    <End Role="tblincidente" Type="Self.tblincidente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblusuarios">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="tblincidente">
+        <PropertyRef Name="seguimiento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="solicitante">
+    <End Role="tblusuarios" Type="Self.tblusuario" Multiplicity="1" />
+    <End Role="tblincidente" Type="Self.tblincidente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblusuarios">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="tblincidente">
+        <PropertyRef Name="solicitante" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="soporte">
+    <End Role="tblusuarios" Type="Self.tblusuario" Multiplicity="1" />
+    <End Role="tblincidente" Type="Self.tblincidente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblusuarios">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="tblincidente">
+        <PropertyRef Name="soporte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tipo">
+    <End Role="tbltipoincidencia" Type="Self.tbltipoincidencia" Multiplicity="1" />
+    <End Role="tblincidente" Type="Self.tblincidente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbltipoincidencia">
+        <PropertyRef Name="idTipoIncidente" />
+      </Principal>
+      <Dependent Role="tblincidente">
+        <PropertyRef Name="tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Institucion">
+    <End Role="tblinstitucion" Type="Self.tblinstitucion" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblusuarios" Type="Self.tblusuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblinstitucion">
+        <PropertyRef Name="idInstitucion" />
+      </Principal>
+      <Dependent Role="tblusuarios">
+        <PropertyRef Name="institucion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="marcaEquipo">
+    <End Role="tblmarca" Type="Self.tblmarca" Multiplicity="1" />
+    <End Role="tblresponsablequipo" Type="Self.tblresponsablequipo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblmarca">
+        <PropertyRef Name="idMarca" />
+      </Principal>
+      <Dependent Role="tblresponsablequipo">
+        <PropertyRef Name="marcaEquipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="marcaMonitor">
+    <End Role="tblmarca" Type="Self.tblmarca" Multiplicity="1" />
+    <End Role="tblresponsablequipo" Type="Self.tblresponsablequipo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblmarca">
+        <PropertyRef Name="idMarca" />
+      </Principal>
+      <Dependent Role="tblresponsablequipo">
+        <PropertyRef Name="marcaMonitor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="marcaMouse">
+    <End Role="tblmarca" Type="Self.tblmarca" Multiplicity="1" />
+    <End Role="tblresponsablequipo" Type="Self.tblresponsablequipo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblmarca">
+        <PropertyRef Name="idMarca" />
+      </Principal>
+      <Dependent Role="tblresponsablequipo">
+        <PropertyRef Name="marcaMouse" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="marcaTeclado">
+    <End Role="tblmarca" Type="Self.tblmarca" Multiplicity="1" />
+    <End Role="tblresponsablequipo" Type="Self.tblresponsablequipo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblmarca">
+        <PropertyRef Name="idMarca" />
+      </Principal>
+      <Dependent Role="tblresponsablequipo">
+        <PropertyRef Name="marcaTeclado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pregunta">
+    <End Role="tblpregunta" Type="Self.tblpregunta" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblrespuesta" Type="Self.tblrespuesta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblpregunta">
+        <PropertyRef Name="idPregunta" />
+      </Principal>
+      <Dependent Role="tblrespuesta">
+        <PropertyRef Name="pregunta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="puesto">
+    <End Role="tblpuesto" Type="Self.tblpuesto" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblusuarios" Type="Self.tblusuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblpuesto">
+        <PropertyRef Name="idPuesto" />
+      </Principal>
+      <Dependent Role="tblusuarios">
+        <PropertyRef Name="puesto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="requerimiento">
+    <End Role="tblrequerimientos" Type="Self.tblrequerimiento" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblrequerimientoaevento" Type="Self.tblrequerimientoaevento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblrequerimientos">
+        <PropertyRef Name="idRequerimientos" />
+      </Principal>
+      <Dependent Role="tblrequerimientoaevento">
+        <PropertyRef Name="requerimiento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="respon">
+    <End Role="tblusuarios" Type="Self.tblusuario" Multiplicity="1" />
+    <End Role="tblresponsablequipo" Type="Self.tblresponsablequipo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblusuarios">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="tblresponsablequipo">
+        <PropertyRef Name="responsable" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tipoE">
+    <End Role="tbltipoequipo" Type="Self.tbltipoequipo" Multiplicity="1" />
+    <End Role="tblresponsablequipo" Type="Self.tblresponsablequipo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbltipoequipo">
+        <PropertyRef Name="idTipoEquipo" />
+      </Principal>
+      <Dependent Role="tblresponsablequipo">
+        <PropertyRef Name="tipoEquipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbhelpdeskEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblareas" EntityType="Self.tblarea" />
+    <EntitySet Name="tblcalidadservicios" EntityType="Self.tblcalidadservicio" />
+    <EntitySet Name="tblcoordinacions" EntityType="Self.tblcoordinacion" />
+    <EntitySet Name="tbldepartamentos" EntityType="Self.tbldepartamento" />
+    <EntitySet Name="tbleventoes" EntityType="Self.tblevento" />
+    <EntitySet Name="tblincidentes" EntityType="Self.tblincidente" />
+    <EntitySet Name="tblinstitucions" EntityType="Self.tblinstitucion" />
+    <EntitySet Name="tbllugars" EntityType="Self.tbllugar" />
+    <EntitySet Name="tblmarcas" EntityType="Self.tblmarca" />
+    <EntitySet Name="tblpreguntas" EntityType="Self.tblpregunta" />
+    <EntitySet Name="tblpuestoes" EntityType="Self.tblpuesto" />
+    <EntitySet Name="tblrequerimientoaeventoes" EntityType="Self.tblrequerimientoaevento" />
+    <EntitySet Name="tblrequerimientos" EntityType="Self.tblrequerimiento" />
+    <EntitySet Name="tblresponsablequipoes" EntityType="Self.tblresponsablequipo" />
+    <EntitySet Name="tblrespuestas" EntityType="Self.tblrespuesta" />
+    <EntitySet Name="tbltipoequipoes" EntityType="Self.tbltipoequipo" />
+    <EntitySet Name="tbltipoincidencias" EntityType="Self.tbltipoincidencia" />
+    <EntitySet Name="tblusuarios" EntityType="Self.tblusuario" />
+    <EntitySet Name="cantidadincidentespordeptoes" EntityType="Self.cantidadincidentespordepto" />
+    <EntitySet Name="ViewCoordinacions" EntityType="Self.ViewCoordinacion" />
+    <EntitySet Name="ViewDepartamentos" EntityType="Self.ViewDepartamento" />
+    <EntitySet Name="ViewEventoConRequerimientos" EntityType="Self.ViewEventoConRequerimiento" />
+    <EntitySet Name="ViewMarcas" EntityType="Self.ViewMarca" />
+    <EntitySet Name="ViewRequerimientos" EntityType="Self.ViewRequerimiento" />
+    <EntitySet Name="ViewTipoIncidencias" EntityType="Self.ViewTipoIncidencia" />
+    <EntitySet Name="ViewUsuarios" EntityType="Self.ViewUsuario" />
+    <EntitySet Name="VistaEncuestas" EntityType="Self.VistaEncuesta" />
+    <EntitySet Name="VistaEquipoReportes" EntityType="Self.VistaEquipoReporte" />
+    <EntitySet Name="VistaEquipos" EntityType="Self.VistaEquipos" />
+    <EntitySet Name="VistaEventos" EntityType="Self.VistaEvento" />
+    <EntitySet Name="VistaIncidentes" EntityType="Self.VistaIncidente" />
+    <EntitySet Name="VistaPreguntas" EntityType="Self.VistaPregunta" />
+    <AssociationSet Name="area" Association="Self.area">
+      <End Role="tblarea" EntitySet="tblareas" />
+      <End Role="tblusuarios" EntitySet="tblusuarios" />
+    </AssociationSet>
+    <AssociationSet Name="eventoa" Association="Self.eventoa">
+      <End Role="tblevento" EntitySet="tbleventoes" />
+      <End Role="tblcalidadservicio" EntitySet="tblcalidadservicios" />
+    </AssociationSet>
+    <AssociationSet Name="incidente" Association="Self.incidente">
+      <End Role="tblincidente" EntitySet="tblincidentes" />
+      <End Role="tblcalidadservicio" EntitySet="tblcalidadservicios" />
+    </AssociationSet>
+    <AssociationSet Name="servicioCalidad" Association="Self.servicioCalidad">
+      <End Role="tblcalidadservicio" EntitySet="tblcalidadservicios" />
+      <End Role="tblrespuesta" EntitySet="tblrespuestas" />
+    </AssociationSet>
+    <AssociationSet Name="coordinacion" Association="Self.coordinacion">
+      <End Role="tblcoordinacion" EntitySet="tblcoordinacions" />
+      <End Role="tbldepartamentos" EntitySet="tbldepartamentos" />
+    </AssociationSet>
+    <AssociationSet Name="depto" Association="Self.depto">
+      <End Role="tbldepartamentos" EntitySet="tbldepartamentos" />
+      <End Role="tblusuarios" EntitySet="tblusuarios" />
+    </AssociationSet>
+    <AssociationSet Name="apoyo" Association="Self.apoyo">
+      <End Role="tblusuarios" EntitySet="tblusuarios" />
+      <End Role="tblevento" EntitySet="tbleventoes" />
+    </AssociationSet>
+    <AssociationSet Name="evento" Association="Self.evento">
+      <End Role="tblevento" EntitySet="tbleventoes" />
+      <End Role="tblrequerimientoaevento" EntitySet="tblrequerimientoaeventoes" />
+    </AssociationSet>
+    <AssociationSet Name="lugar_" Association="Self.lugar_">
+      <End Role="tbllugar" EntitySet="tbllugars" />
+      <End Role="tblevento" EntitySet="tbleventoes" />
+    </AssociationSet>
+    <AssociationSet Name="responsable" Association="Self.responsable">
+      <End Role="tblusuarios" EntitySet="tblusuarios" />
+      <End Role="tblevento" EntitySet="tbleventoes" />
+    </AssociationSet>
+    <AssociationSet Name="solicitante2" Association="Self.solicitante2">
+      <End Role="tblusuarios" EntitySet="tblusuarios" />
+      <End Role="tblevento" EntitySet="tbleventoes" />
+    </AssociationSet>
+    <AssociationSet Name="seguimiento" Association="Self.seguimiento">
+      <End Role="tblusuarios" EntitySet="tblusuarios" />
+      <End Role="tblincidente" EntitySet="tblincidentes" />
+    </AssociationSet>
+    <AssociationSet Name="solicitante" Association="Self.solicitante">
+      <End Role="tblusuarios" EntitySet="tblusuarios" />
+      <End Role="tblincidente" EntitySet="tblincidentes" />
+    </AssociationSet>
+    <AssociationSet Name="soporte" Association="Self.soporte">
+      <End Role="tblusuarios" EntitySet="tblusuarios" />
+      <End Role="tblincidente" EntitySet="tblincidentes" />
+    </AssociationSet>
+    <AssociationSet Name="tipo" Association="Self.tipo">
+      <End Role="tbltipoincidencia" EntitySet="tbltipoincidencias" />
+      <End Role="tblincidente" EntitySet="tblincidentes" />
+    </AssociationSet>
+    <AssociationSet Name="Institucion" Association="Self.Institucion">
+      <End Role="tblinstitucion" EntitySet="tblinstitucions" />
+      <End Role="tblusuarios" EntitySet="tblusuarios" />
+    </AssociationSet>
+    <AssociationSet Name="marcaEquipo" Association="Self.marcaEquipo">
+      <End Role="tblmarca" EntitySet="tblmarcas" />
+      <End Role="tblresponsablequipo" EntitySet="tblresponsablequipoes" />
+    </AssociationSet>
+    <AssociationSet Name="marcaMonitor" Association="Self.marcaMonitor">
+      <End Role="tblmarca" EntitySet="tblmarcas" />
+      <End Role="tblresponsablequipo" EntitySet="tblresponsablequipoes" />
+    </AssociationSet>
+    <AssociationSet Name="marcaMouse" Association="Self.marcaMouse">
+      <End Role="tblmarca" EntitySet="tblmarcas" />
+      <End Role="tblresponsablequipo" EntitySet="tblresponsablequipoes" />
+    </AssociationSet>
+    <AssociationSet Name="marcaTeclado" Association="Self.marcaTeclado">
+      <End Role="tblmarca" EntitySet="tblmarcas" />
+      <End Role="tblresponsablequipo" EntitySet="tblresponsablequipoes" />
+    </AssociationSet>
+    <AssociationSet Name="pregunta" Association="Self.pregunta">
+      <End Role="tblpregunta" EntitySet="tblpreguntas" />
+      <End Role="tblrespuesta" EntitySet="tblrespuestas" />
+    </AssociationSet>
+    <AssociationSet Name="puesto" Association="Self.puesto">
+      <End Role="tblpuesto" EntitySet="tblpuestoes" />
+      <End Role="tblusuarios" EntitySet="tblusuarios" />
+    </AssociationSet>
+    <AssociationSet Name="requerimiento" Association="Self.requerimiento">
+      <End Role="tblrequerimientos" EntitySet="tblrequerimientos" />
+      <End Role="tblrequerimientoaevento" EntitySet="tblrequerimientoaeventoes" />
+    </AssociationSet>
+    <AssociationSet Name="respon" Association="Self.respon">
+      <End Role="tblusuarios" EntitySet="tblusuarios" />
+      <End Role="tblresponsablequipo" EntitySet="tblresponsablequipoes" />
+    </AssociationSet>
+    <AssociationSet Name="tipoE" Association="Self.tipoE">
+      <End Role="tbltipoequipo" EntitySet="tbltipoequipoes" />
+      <End Role="tblresponsablequipo" EntitySet="tblresponsablequipoes" />
+    </AssociationSet>
+    <FunctionImport Name="EventosXStatus" ReturnType="Collection(dbhelpdeskModel.EventosXStatus_Result)">
+      <Parameter Name="status" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="IncidentesXStatus" ReturnType="Collection(dbhelpdeskModel.IncidentesXStatus_Result)">
+      <Parameter Name="status" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ReqAsignados" ReturnType="Collection(dbhelpdeskModel.ReqAsignados_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UltimoEvento" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="numEventosPorMes" ReturnType="Collection(dbhelpdeskModel.numEventosPorMes_Result)">
+      <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fechaFinal" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="numEventosPorUsuario" ReturnType="Collection(dbhelpdeskModel.numEventosPorUsuario_Result)">
+      <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fechaFinal" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="numIncidentesPorDepto" ReturnType="Collection(dbhelpdeskModel.numIncidentesPorDepto_Result)">
+      <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fechaFinal" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="numIncidentesPorMes" ReturnType="Collection(dbhelpdeskModel.numIncidentesPorMes_Result)">
+      <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fechaFinal" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="numIncidentesPorTipo" ReturnType="Collection(dbhelpdeskModel.numIncidentesPorTipo_Result)">
+      <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fechaFinal" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="numIncidentesPorUsuario" ReturnType="Collection(dbhelpdeskModel.numIncidentesPorUsuario_Result)">
+      <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fechaFinal" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="promedioCalidadPorDepto" ReturnType="Collection(dbhelpdeskModel.promedioCalidadPorDepto_Result)">
+      <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fechaFinal" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="promedioCalidadPorMesEv" ReturnType="Collection(dbhelpdeskModel.promedioCalidadPorMesEv_Result)">
+      <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fechaFinal" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="promedioCalidadPorMesIn" ReturnType="Collection(dbhelpdeskModel.promedioCalidadPorMesIn_Result)">
+      <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fechaFinal" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="promedioCalidadPorTipoIn" ReturnType="Collection(dbhelpdeskModel.promedioCalidadPorTipoIn_Result)">
+      <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fechaFinal" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="promedioCalidadPorUsuarioEv" ReturnType="Collection(dbhelpdeskModel.promedioCalidadPorUsuarioEv_Result)">
+      <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fechaFinal" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="promedioCalidadPorUsuarioIn" ReturnType="Collection(dbhelpdeskModel.promedioCalidadPorUsuarioIn_Result)">
+      <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fechaFinal" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="requerimientosSinAsignar" ReturnType="Collection(dbhelpdeskModel.requerimientosSinAsignar_Result)">
+      <Parameter Name="idEvento" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="topCincoRecursosMasUsados" ReturnType="Collection(dbhelpdeskModel.topCincoRecursosMasUsados_Result)">
+      <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fechaFinal" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="topCincoRecursosMenosUsados" ReturnType="Collection(dbhelpdeskModel.topCincoRecursosMenosUsados_Result)">
+      <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fechaFinal" Mode="In" Type="DateTime" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="EventosXStatus_Result">
+    <Property Type="Int32" Name="idEvento" Nullable="false" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="200" />
+    <Property Type="Int32" Name="solicitante" Nullable="false" />
+    <Property Type="Int32" Name="responsable" Nullable="false" />
+    <Property Type="Int32" Name="apoyo" Nullable="false" />
+    <Property Type="DateTime" Name="fecha_Sol" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="lugar" Nullable="true" />
+    <Property Type="Int32" Name="asistencia_aprox" Nullable="true" />
+    <Property Type="String" Name="tipo_evento" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="acomodo" Nullable="true" MaxLength="25" />
+    <Property Type="DateTime" Name="horaIn" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="horaFn" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="fecha_cierre" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="status" Nullable="false" />
+    <Property Type="DateTime" Name="FechaInicio" Nullable="true" Precision="23" />
+    <Property Type="String" Name="observaciones" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="titulo" Nullable="false" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="IncidentesXStatus_Result">
+    <Property Type="Int32" Name="numIncidente" Nullable="false" />
+    <Property Type="Int32" Name="tipo" Nullable="false" />
+    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="solicitante" Nullable="false" />
+    <Property Type="String" Name="prioridad" Nullable="true" MaxLength="6" />
+    <Property Type="DateTime" Name="fecha_Sol" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="status" Nullable="false" />
+    <Property Type="DateTime" Name="horaIn" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="horaFn" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="fecha_Cierre" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="soporte" Nullable="false" />
+    <Property Type="String" Name="acciones" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="solucion" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="seguimiento" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="ReqAsignados_Result">
+    <Property Type="String" Name="nomRequerimiento" Nullable="false" MaxLength="30" />
+    <Property Type="Int32" Name="cantidad" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="numEventosPorMes_Result">
+    <Property Type="String" Name="Fecha" Nullable="true" MaxLength="61" />
+    <Property Type="Int32" Name="Cantidad" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="numEventosPorUsuario_Result">
+    <Property Type="String" Name="Soporte" Nullable="false" MaxLength="25" />
+    <Property Type="Int32" Name="Cantidad" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="numIncidentesPorDepto_Result">
+    <Property Type="String" Name="Departamento" Nullable="false" MaxLength="40" />
+    <Property Type="Int32" Name="Cantidad" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="numIncidentesPorMes_Result">
+    <Property Type="String" Name="Fecha" Nullable="true" MaxLength="61" />
+    <Property Type="Int32" Name="Cantidad" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="numIncidentesPorTipo_Result">
+    <Property Type="String" Name="Tipo" Nullable="false" MaxLength="25" />
+    <Property Type="Int32" Name="Número" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="numIncidentesPorUsuario_Result">
+    <Property Type="String" Name="Usuario" Nullable="false" MaxLength="25" />
+    <Property Type="Int32" Name="Número" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="promedioCalidadPorDepto_Result">
+    <Property Type="String" Name="Departamento" Nullable="false" MaxLength="40" />
+    <Property Type="Single" Name="Promedio" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="promedioCalidadPorMesEv_Result">
+    <Property Type="String" Name="Mes" Nullable="true" MaxLength="61" />
+    <Property Type="Double" Name="Promedio" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="promedioCalidadPorMesIn_Result">
+    <Property Type="String" Name="Mes" Nullable="true" MaxLength="61" />
+    <Property Type="Double" Name="Promedio" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="promedioCalidadPorTipoIn_Result">
+    <Property Type="String" Name="Tipo" Nullable="false" MaxLength="25" />
+    <Property Type="Double" Name="Promedio" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="promedioCalidadPorUsuarioEv_Result">
+    <Property Type="String" Name="responsable" Nullable="false" MaxLength="25" />
+    <Property Type="Double" Name="Promedio" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="promedioCalidadPorUsuarioIn_Result">
+    <Property Type="String" Name="soporte" Nullable="false" MaxLength="25" />
+    <Property Type="Double" Name="Promedio" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="requerimientosSinAsignar_Result">
+    <Property Type="Int32" Name="idRequerimientos" Nullable="false" />
+    <Property Type="String" Name="nomRequerimiento" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="tipo" Nullable="true" MaxLength="25" />
+  </ComplexType>
+  <ComplexType Name="topCincoRecursosMasUsados_Result">
+    <Property Type="Int32" Name="Cantidad" Nullable="true" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="topCincoRecursosMenosUsados_Result">
+    <Property Type="Int32" Name="Cantidad" Nullable="true" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="30" />
+  </ComplexType>
+</Schema>

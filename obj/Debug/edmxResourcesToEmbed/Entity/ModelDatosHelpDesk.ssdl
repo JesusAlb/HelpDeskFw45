@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbhelpdeskModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblcoordinacion">
+    <Key>
+      <PropertyRef Name="idCoordinacion" />
+    </Key>
+    <Property Name="idCoordinacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nomCoordinacion" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="tbldepartamentos">
+    <Key>
+      <PropertyRef Name="idDepto" />
+    </Key>
+    <Property Name="idDepto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nomDepto" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="coordinacion" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblevento">
+    <Key>
+      <PropertyRef Name="idEvento" />
+    </Key>
+    <Property Name="idEvento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="titulo" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="solicitante" Type="int" Nullable="false" />
+    <Property Name="responsable" Type="int" />
+    <Property Name="apoyo" Type="int" />
+    <Property Name="fecha_Sol" Type="date" Nullable="false" />
+    <Property Name="lugar" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="asistencia_aprox" Type="int" />
+    <Property Name="tipo_evento" Type="int" Nullable="false" />
+    <Property Name="acomodo" Type="int" />
+    <Property Name="horaIn" Type="datetime" />
+    <Property Name="horaFn" Type="datetime" />
+    <Property Name="fecha_cierre" Type="date" />
+    <Property Name="status" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblincidente">
+    <Key>
+      <PropertyRef Name="numIncidente" />
+    </Key>
+    <Property Name="numIncidente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="text" Nullable="false" />
+    <Property Name="solicitante" Type="int" Nullable="false" />
+    <Property Name="prioridad" Type="int" Nullable="false" />
+    <Property Name="fecha_Sol" Type="date" Nullable="false" />
+    <Property Name="status" Type="int" Nullable="false" />
+    <Property Name="horaIn" Type="time" Precision="7" Nullable="false" />
+    <Property Name="horaFn" Type="time" Precision="7" />
+    <Property Name="fecha_Cierre" Type="date" />
+    <Property Name="soporte" Type="int" />
+    <Property Name="acciones" Type="text" />
+    <Property Name="solucion" Type="text" />
+  </EntityType>
+  <EntityType Name="tblrequerimientoaevento">
+    <Key>
+      <PropertyRef Name="evento" />
+      <PropertyRef Name="requerimiento" />
+    </Key>
+    <Property Name="evento" Type="int" Nullable="false" />
+    <Property Name="requerimiento" Type="int" Nullable="false" />
+    <Property Name="cantidad" Type="int" />
+  </EntityType>
+  <EntityType Name="tblrequerimientos">
+    <Key>
+      <PropertyRef Name="idRequerimientos" />
+    </Key>
+    <Property Name="idRequerimientos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo" Type="int" Nullable="false" />
+    <Property Name="nombreReq" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbltipoincidencia">
+    <Key>
+      <PropertyRef Name="idTipo" />
+    </Key>
+    <Property Name="idTipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblusuarios">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nomCompleto" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="nomUsuario" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="tipoUsuario" Type="int" Nullable="false" />
+    <Property Name="coordinacion" Type="int" Nullable="false" />
+    <Property Name="depto" Type="int" Nullable="false" />
+    <Property Name="exTel" Type="varchar" MaxLength="5" />
+  </EntityType>
+  <Association Name="apoyo">
+    <End Role="tblusuarios" Type="Self.tblusuarios" Multiplicity="0..1" />
+    <End Role="tblevento" Type="Self.tblevento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblusuarios">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="tblevento">
+        <PropertyRef Name="apoyo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="coordcion">
+    <End Role="tblcoordinacion" Type="Self.tblcoordinacion" Multiplicity="1" />
+    <End Role="tblusuarios" Type="Self.tblusuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblcoordinacion">
+        <PropertyRef Name="idCoordinacion" />
+      </Principal>
+      <Dependent Role="tblusuarios">
+        <PropertyRef Name="coordinacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="coordinacion">
+    <End Role="tblcoordinacion" Type="Self.tblcoordinacion" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbldepartamentos" Type="Self.tbldepartamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblcoordinacion">
+        <PropertyRef Name="idCoordinacion" />
+      </Principal>
+      <Dependent Role="tbldepartamentos">
+        <PropertyRef Name="coordinacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="depto">
+    <End Role="tbldepartamentos" Type="Self.tbldepartamentos" Multiplicity="1" />
+    <End Role="tblusuarios" Type="Self.tblusuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbldepartamentos">
+        <PropertyRef Name="idDepto" />
+      </Principal>
+      <Dependent Role="tblusuarios">
+        <PropertyRef Name="depto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="evento">
+    <End Role="tblevento" Type="Self.tblevento" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblrequerimientoaevento" Type="Self.tblrequerimientoaevento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblevento">
+        <PropertyRef Name="idEvento" />
+      </Principal>
+      <Dependent Role="tblrequerimientoaevento">
+        <PropertyRef Name="evento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="requerimiento">
+    <End Role="tblrequerimientos" Type="Self.tblrequerimientos" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblrequerimientoaevento" Type="Self.tblrequerimientoaevento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblrequerimientos">
+        <PropertyRef Name="idRequerimientos" />
+      </Principal>
+      <Dependent Role="tblrequerimientoaevento">
+        <PropertyRef Name="requerimiento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="responsable">
+    <End Role="tblusuarios" Type="Self.tblusuarios" Multiplicity="0..1" />
+    <End Role="tblevento" Type="Self.tblevento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblusuarios">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="tblevento">
+        <PropertyRef Name="responsable" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="solicitante">
+    <End Role="tblusuarios" Type="Self.tblusuarios" Multiplicity="1" />
+    <End Role="tblincidente" Type="Self.tblincidente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblusuarios">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="tblincidente">
+        <PropertyRef Name="solicitante" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="solicitante2">
+    <End Role="tblusuarios" Type="Self.tblusuarios" Multiplicity="1" />
+    <End Role="tblevento" Type="Self.tblevento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblusuarios">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="tblevento">
+        <PropertyRef Name="solicitante" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="soporte">
+    <End Role="tblusuarios" Type="Self.tblusuarios" Multiplicity="0..1" />
+    <End Role="tblincidente" Type="Self.tblincidente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblusuarios">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="tblincidente">
+        <PropertyRef Name="soporte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tipo">
+    <End Role="tbltipoincidencia" Type="Self.tbltipoincidencia" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblincidente" Type="Self.tblincidente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbltipoincidencia">
+        <PropertyRef Name="idTipo" />
+      </Principal>
+      <Dependent Role="tblincidente">
+        <PropertyRef Name="tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbhelpdeskModelStoreContainer">
+    <EntitySet Name="tblcoordinacion" EntityType="Self.tblcoordinacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbldepartamentos" EntityType="Self.tbldepartamentos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblevento" EntityType="Self.tblevento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblincidente" EntityType="Self.tblincidente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblrequerimientoaevento" EntityType="Self.tblrequerimientoaevento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblrequerimientos" EntityType="Self.tblrequerimientos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbltipoincidencia" EntityType="Self.tbltipoincidencia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblusuarios" EntityType="Self.tblusuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="apoyo" Association="Self.apoyo">
+      <End Role="tblusuarios" EntitySet="tblusuarios" />
+      <End Role="tblevento" EntitySet="tblevento" />
+    </AssociationSet>
+    <AssociationSet Name="coordcion" Association="Self.coordcion">
+      <End Role="tblcoordinacion" EntitySet="tblcoordinacion" />
+      <End Role="tblusuarios" EntitySet="tblusuarios" />
+    </AssociationSet>
+    <AssociationSet Name="coordinacion" Association="Self.coordinacion">
+      <End Role="tblcoordinacion" EntitySet="tblcoordinacion" />
+      <End Role="tbldepartamentos" EntitySet="tbldepartamentos" />
+    </AssociationSet>
+    <AssociationSet Name="depto" Association="Self.depto">
+      <End Role="tbldepartamentos" EntitySet="tbldepartamentos" />
+      <End Role="tblusuarios" EntitySet="tblusuarios" />
+    </AssociationSet>
+    <AssociationSet Name="evento" Association="Self.evento">
+      <End Role="tblevento" EntitySet="tblevento" />
+      <End Role="tblrequerimientoaevento" EntitySet="tblrequerimientoaevento" />
+    </AssociationSet>
+    <AssociationSet Name="requerimiento" Association="Self.requerimiento">
+      <End Role="tblrequerimientos" EntitySet="tblrequerimientos" />
+      <End Role="tblrequerimientoaevento" EntitySet="tblrequerimientoaevento" />
+    </AssociationSet>
+    <AssociationSet Name="responsable" Association="Self.responsable">
+      <End Role="tblusuarios" EntitySet="tblusuarios" />
+      <End Role="tblevento" EntitySet="tblevento" />
+    </AssociationSet>
+    <AssociationSet Name="solicitante" Association="Self.solicitante">
+      <End Role="tblusuarios" EntitySet="tblusuarios" />
+      <End Role="tblincidente" EntitySet="tblincidente" />
+    </AssociationSet>
+    <AssociationSet Name="solicitante2" Association="Self.solicitante2">
+      <End Role="tblusuarios" EntitySet="tblusuarios" />
+      <End Role="tblevento" EntitySet="tblevento" />
+    </AssociationSet>
+    <AssociationSet Name="soporte" Association="Self.soporte">
+      <End Role="tblusuarios" EntitySet="tblusuarios" />
+      <End Role="tblincidente" EntitySet="tblincidente" />
+    </AssociationSet>
+    <AssociationSet Name="tipo" Association="Self.tipo">
+      <End Role="tbltipoincidencia" EntitySet="tbltipoincidencia" />
+      <End Role="tblincidente" EntitySet="tblincidente" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

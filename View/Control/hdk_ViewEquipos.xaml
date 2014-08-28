@@ -1,0 +1,112 @@
+﻿<Window x:Class="HelpDesk.View.Catalogos.hdk_ViewEquipos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ Title="Help Desk - Equipos" Height="441" Width="799" FontSize="13"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True" Background="Transparent" Icon="/HelpDesk;component/Imagenes/diseno_icono.png">
+    <Border Margin="10" BorderBrush="Red" BorderThickness="0.5" CornerRadius="15" Background="White">
+        <Border.Effect>
+            <DropShadowEffect Color="Black"
+                          Direction="320"
+                          BlurRadius="15"
+                          ShadowDepth="3" />
+        </Border.Effect>
+        <DockPanel LastChildFill="True" Background="Transparent">
+            <Grid DockPanel.Dock="Top" Height="25">
+                <TextBlock VerticalAlignment="Center" Text="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                       HorizontalAlignment="Center" />
+                <Image Source="../../Imagenes/diseno_icono.png" VerticalAlignment="Top" Width="20" Height="20" Margin="7,4,705,0"/>
+                <Rectangle Name="titleBar"
+                       Fill="Transparent"
+                       MouseLeftButtonDown="titleBar_MouseLeftButtonDown"/>
+                <Button Name="closeButton"
+                    Style="{StaticResource CerrarStyle}"
+                    HorizontalAlignment="Right"
+                    Width="15" Margin="0,0,5,0" Height="15"
+                    Click="closeButton_Click"/>
+                <Button Name="minButton"
+                    Style="{StaticResource MinimizarStyle}"
+                    HorizontalAlignment="Right"
+                    Width="15" Margin="0,0,25,0" Height="9"
+                    Click="minButton_Click"/>
+            </Grid>
+            <Grid>
+                <Border Margin="36,99,37,35" BorderBrush="Black" BorderThickness="0.6" CornerRadius="15">
+                    <Grid>
+                        <Border x:Name="BDRounded" BorderThickness="1" CornerRadius="15" BorderBrush="Transparent" Background="White" />
+                        <DataGrid BorderBrush="Transparent" CanUserResizeColumns="False"  IsReadOnly="True" AlternatingRowBackground="LightGray" CanUserAddRows="false"  AutoGenerateColumns="False" EnableRowVirtualization="True"  ItemsSource="{Binding }"
+                   Name="DataG" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Height="260" Width="703" FontSize="15" GridLinesVisibility="Horizontal">
+                            <DataGrid.OpacityMask>
+                                <VisualBrush  Visual="{Binding ElementName=BDRounded}" />
+                            </DataGrid.OpacityMask>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Id" Width="50" Binding="{Binding idResponEq}" />
+                                <DataGridTextColumn Header="Responsable" Binding="{Binding nomCompleto}"/>
+                                <DataGridTextColumn Header="Tipo" Binding="{Binding nomTipoEquipo}" />
+                                <DataGridTextColumn Header="Marca Equipo" Binding="{Binding nomMarcaEquipo}" />
+                                <DataGridTextColumn Header="Serie Equipo" Binding="{Binding serieEquipo}" />
+                                <DataGridTextColumn Header="Procesador" Binding="{Binding procesador}" />
+                                <DataGridTextColumn Header="Memoria RAM" Binding="{Binding memoriaRam}" />
+                                <DataGridTextColumn Header="Disco Duro" Binding="{Binding discoDuro}" />
+                                <DataGridTextColumn Header="Marca Monitor" Binding="{Binding nomMarcaMonitor}" />
+                                <DataGridTextColumn Header="Serie Monitor" Binding="{Binding serieMonitor}" />
+                                <DataGridTextColumn Header="Marca Teclado" Binding="{Binding nomMarcaTeclado}" />
+                                <DataGridTextColumn Header="Serie Teclado" Binding="{Binding serieTeclado}" />
+                                <DataGridTextColumn Header="Marca Mouse" Binding="{Binding nomMarcaMouse}" />
+                                <DataGridTextColumn Header="Serie Mouse" Binding="{Binding serieMouse}" />
+                                <DataGridTextColumn Header="IP" Binding="{Binding ip}" />
+                                <DataGridTextColumn Header="Dirección MAC" Binding="{Binding mac}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Border>
+
+                <Grid Background="#FAFAFA" HorizontalAlignment="Left" Height="80" Margin="1,2,0,0" VerticalAlignment="Top" Width="776">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="85*"/>
+                        <ColumnDefinition Width="74*"/>
+                        <ColumnDefinition Width="267*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="90*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox HorizontalAlignment="Center" Height="30" MaxLength="40" Name="txtFiltro" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="240" VerticalContentAlignment="Center" KeyUp="txtFiltro_KeyUp" Grid.Column="2" />
+                    <Label Content="Buscar" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Width="58" Grid.Column="1" Height="30" Margin="11,25,5,25" />
+                    <Button Style="{StaticResource BotonStyle}" Height="70" Width="56" Name="Add" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Add_Click" Grid.Column="4" >
+                        <Grid Height="64" Width="51">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="37*"/>
+                                <RowDefinition Height="12*"/>
+                            </Grid.RowDefinitions>
+                            <Image Source="../../Imagenes/Add.png" VerticalAlignment="Center"  />
+                            <Label BorderThickness="0" Foreground="Black" FontWeight="Bold" Content="Agregar" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10" Height="25"  Grid.Row="1" />
+                        </Grid>
+                    </Button>
+                    <Button Style="{StaticResource BotonStyle}" Height="70" Width="56" Name="Mod" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Mod_Click" Grid.Column="5" >
+                        <Grid Height="64" Width="51">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="37*"/>
+                                <RowDefinition Height="12*"/>
+                            </Grid.RowDefinitions>
+                            <Image Source="../../Imagenes/Edit.png" VerticalAlignment="Center"  />
+                            <Label BorderThickness="0" Foreground="Black" FontWeight="Bold" Content="Editar" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10" Height="25"  Grid.Row="1" />
+                        </Grid>
+                    </Button>
+                    <Button Style="{StaticResource BotonStyle}" Height="70" Width="56"  x:Name="Imp" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Imp_Click" Grid.Column="6" >
+                        <Grid Height="64" Width="51">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="37*"/>
+                                <RowDefinition Height="12*"/>
+                            </Grid.RowDefinitions>
+                            <Image Source="../../Imagenes/Print.png" VerticalAlignment="Center"  />
+                            <Label BorderThickness="0" Foreground="Black" FontWeight="Bold" Content="Imprimir" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10" Height="25"  Grid.Row="1" />
+                        </Grid>
+                    </Button>
+                </Grid>
+            </Grid>
+        </DockPanel>
+    </Border>
+</Window>

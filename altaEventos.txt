@@ -1,0 +1,4 @@
+ALTA DE EVENTOS SIN CONEXIÓN
+ESTRUCTURA DE LOS DATOS:
+->Fecha Solicitud, título, descripción, id del solicitante, lugar, acomodo, tipo de evento, fecha de inicio, hora de inicio, hora final, asistencia aproximada y estatus
+

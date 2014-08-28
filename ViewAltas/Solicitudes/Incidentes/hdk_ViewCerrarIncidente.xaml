@@ -1,0 +1,48 @@
+﻿<Window x:Class="HelpDesk.ViewAltas.hdk_ViewCerrarIncidente"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Help desk - Solución de incidencia" Height="374.087" Width="552.699" FontSize="13"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        WindowStyle="None" Icon="/HelpDesk;component/Imagenes/diseno_icono.png"
+        AllowsTransparency="True" Background="Transparent">
+    <Border Margin="10" BorderBrush="Red" BorderThickness="0.5" CornerRadius="15" Background="White">
+        <Border.Effect>
+            <DropShadowEffect Color="Black"
+                          Direction="320"
+                          BlurRadius="15"
+                          ShadowDepth="3" />
+        </Border.Effect>
+        <DockPanel LastChildFill="True" Background="Transparent">
+            <Grid DockPanel.Dock="Top" Height="25">
+                <TextBlock VerticalAlignment="Center" Text="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                       HorizontalAlignment="Center" />
+                <Image Source="../../../Imagenes/diseno_icono.png" VerticalAlignment="Top" Width="20" Height="20" Margin="7,4,505,0"/>
+                <Rectangle Name="titleBar"
+                       Fill="Transparent"
+                       MouseLeftButtonDown="titleBar_MouseLeftButtonDown"/>
+                <Button Name="closeButton"
+                    Style="{StaticResource CerrarStyle}"
+                    HorizontalAlignment="Right"
+                    Width="15" Margin="0,0,5,0" Height="15"
+                    Click="closeButton_Click"/>
+                <Button Name="minButton"
+                    Style="{StaticResource MinimizarStyle}"
+                    HorizontalAlignment="Right"
+                    Width="15" Margin="0,0,25,0" Height="9"
+                    Click="minButton_Click"/>
+            </Grid>
+            <Grid>
+                <Label Content="Acciones" FontSize="16" HorizontalAlignment="Left" Margin="59,66,0,0" VerticalAlignment="Top"/>
+                <Label Content="Solución" FontSize="16" HorizontalAlignment="Left" Margin="59,166,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.514,0.097"/>
+                <TextBox AcceptsReturn="True" VerticalContentAlignment="Top" MaxLength="200" Name="acciones" HorizontalAlignment="Left" Height="84" Margin="150,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="324" PreviewKeyDown="acciones_PreviewKeyDown" 
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                <TextBox VerticalContentAlignment="Top" Margin="150,165,0,0" MaxLength="200" Name="solucion" HorizontalAlignment="Left" FontSize="15" Height="84" TextWrapping="Wrap" VerticalAlignment="Top" Width="325" PreviewTextInput="solucion_PreviewTextInput" 
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                <Button FontSize="16" Style="{StaticResource BotonAceptarStyle}" Name="terminar" Content="Terminar" HorizontalAlignment="Left" Margin="236,272,0,0" VerticalAlignment="Top" Width="75" Click="terminar_Click" Height="30" IsDefault="True"/>
+                <Label Content="Tipo" FontSize="16" HorizontalAlignment="Left" Margin="59,18,0,0" VerticalAlignment="Top"/>
+                <ComboBox Name="cbTipo" VerticalContentAlignment="Center" FontSize="15" IsEnabled="False" HorizontalAlignment="Left" Height="31" Background="{StaticResource GrayBlueGradientBrush}" Margin="150,19,0,0" VerticalAlignment="Top" Width="235"/>
+                <CheckBox Name="checkEditar" Checked="checkEditar_Checked" Unchecked="checkEditar_Unchecked" Content="Editar" Height="25" FontSize="16" HorizontalAlignment="Left" Margin="404,22,0,0" VerticalAlignment="Top" Width="67"/>
+            </Grid>
+        </DockPanel>
+    </Border>
+</Window>

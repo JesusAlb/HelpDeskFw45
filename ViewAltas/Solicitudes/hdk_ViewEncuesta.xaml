@@ -1,0 +1,132 @@
+﻿<Window x:Class="HelpDesk.ViewAltas.Solicitudes.hdk_ViewEncuesta"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Help desk - Evaluación del servicio" Height="546" Width="662" FontSize="13"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        WindowStyle="None" Icon="/HelpDesk;component/Imagenes/diseno_icono.png"
+        AllowsTransparency="True" Background="Transparent">
+    <Border Margin="10" BorderBrush="Red" BorderThickness="0.5" Background="White" CornerRadius="15">
+        <Border.Effect>
+            <DropShadowEffect Color="Black"
+                          Direction="320"
+                          BlurRadius="15"
+                          ShadowDepth="3" />
+        </Border.Effect>
+        <DockPanel LastChildFill="True" Background="Transparent">
+            <Grid DockPanel.Dock="Top" Height="25">
+                <TextBlock VerticalAlignment="Center" Text="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                       HorizontalAlignment="Center" />
+                <Image Source="../../Imagenes/diseno_icono.png" VerticalAlignment="Top" Width="20" Height="20" Margin="6,5,707,0" RenderTransformOrigin="-1.75,0.45"/>
+                <Rectangle Name="titleBar"
+                       Fill="Transparent"
+                       MouseLeftButtonDown="titleBar_MouseLeftButtonDown"/>
+                <Button Name="closeButton"
+                    Style="{StaticResource CerrarStyle}"
+                    HorizontalAlignment="Right"
+                    Width="15" Margin="0,0,5,0" Height="15"
+                    Click="closeButton_Click"/>
+                <Button Name="minButton"
+                    Style="{StaticResource MinimizarStyle}"
+                    HorizontalAlignment="Right"
+                    Width="15" Margin="0,0,25,0" Height="9"
+                    Click="minButton_Click"/>
+            </Grid>
+            <Grid>
+
+                <DataGrid Name="DataG" BorderBrush="Transparent" GridLinesVisibility="Horizontal"  EnableRowVirtualization="True"  ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserAddRows="False"
+                                  CanUserResizeRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserDeleteRows="False" HorizontalAlignment="Right" 
+                                  Margin="0,127,64,0" VerticalAlignment="Top" Width="520" Height="167" Background="Transparent" IsReadOnly="True" FontSize="16" CanUserSortColumns="False">
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="Background" Value="{StaticResource GrayBlueGradientBrush}"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="BorderBrush" Value="Transparent"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.CellStyle>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="BorderBrush" Value="Transparent"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn  Header="#" Width="30" Binding="{Binding numPregunta}"/>
+                        <DataGridTextColumn Header="Aspectos" Width="360"  Binding="{Binding txtPregunta}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Respuesta" Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox Name="cbRespuesta" FontSize="15" HorizontalAlignment="Center" Background="{StaticResource GrayBlueGradientBrush}" Height="25" Width="60" >
+                                        <ComboBoxItem Content="1" Tag="1"/>
+                                        <ComboBoxItem Content="2" Tag="2"/>
+                                        <ComboBoxItem Content="3" Tag="3"/>
+                                        <ComboBoxItem Content="4" Tag="4"/>
+                                        <ComboBoxItem Content="5" Tag="5"/>
+                                        <ComboBoxItem Content="6" Tag="6"/>
+                                        <ComboBoxItem Content="7" Tag="7"/>
+                                        <ComboBoxItem Content="8" Tag="8"/>
+                                        <ComboBoxItem Content="9" Tag="9"/>
+                                        <ComboBoxItem Content="10" Tag="10"/>
+                                        <!--<ComboBox.Style>
+                                            <Style TargetType="{x:Type ComboBox}">
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="true">
+                                                        <Setter Property = "Background" Value="Transparent"/>
+                                                        <Setter Property = "BorderBrush" Value="Transparent"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </ComboBox.Style>-->
+                                    </ComboBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Respuesta" Width="100" Binding="{Binding valorRespuesta}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Label Content="Solicitante" FontSize="16" HorizontalAlignment="Left" Margin="83,29,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.196,0.262"/>
+                <TextBox Name="txtSolicitante" IsReadOnly="True" FontSize="16" Height="31" HorizontalAlignment="Left" Margin="176,29,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="387"/>
+                <Button Content="Registrar" HorizontalAlignment="Center" Margin="283,450,283,0" VerticalAlignment="Top" Width="75" Style="{StaticResource BotonAceptarStyle}" Name="btnRegistrar" Click="btnRegistrar_Click" IsDefault="True"/>
+                <Label Name="lbelObs" Content="Observaciones" FontSize="16" HorizontalAlignment="Left" Margin="58,346,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.196,0.262"/>
+                <TextBox AcceptsReturn="True" Name="txtObservaciones" MaxLength="100" FontSize="16" HorizontalAlignment="Left" VerticalContentAlignment="Top" Height="59" Margin="58,378,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="519" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" PreviewTextInput="txtObservaciones_PreviewTextInput"/>
+                <Label FontSize="16" HorizontalAlignment="Left" Margin="61,71,0,0" VerticalAlignment="Top" Width="514" Height="54">
+                    <Label.Content>
+                        <TextBlock Text="¿Cuál es su opinión sobre la calidad del servicio? Califique del 1 a 10 los siguientes aspectos." TextWrapping="Wrap"/>
+                    </Label.Content>
+                </Label>
+                <GroupBox Name="gbResultado" Header="Promedio" FontSize="16" BorderBrush="Black" HorizontalAlignment="Left" Margin="254,294,0,0" VerticalAlignment="Top" Height="76" Width="145">
+                    <Grid>
+                        <Image Name="imEstado" HorizontalAlignment="Left" Height="56" Margin="73,-6,-1,-2" VerticalAlignment="Top" Width="61" RenderTransformOrigin="0.688,0.542"/>
+                        <TextBox Name="txtValorPromedio" IsReadOnly="True" FontSize="25"  HorizontalAlignment="Left" Height="46" HorizontalContentAlignment="Center" Margin="12,-1,0,0" TextWrapping="Wrap" Text="0" MaxLength="3" VerticalAlignment="Top" Width="52"/>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </DockPanel>
+    </Border>
+</Window>

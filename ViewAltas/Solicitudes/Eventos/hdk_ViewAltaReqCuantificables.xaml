@@ -1,0 +1,41 @@
+﻿<Window x:Class="HelpDesk.ViewAltas.hdk_ViewAltaReqCuantificables"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Cantidad requerida" Height="153" Width="339" FontSize="13"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        WindowStyle="None" Icon="/HelpDesk;component/Imagenes/diseno_icono.png"
+        AllowsTransparency="True" Background="Transparent">
+    <Border Margin="10" BorderBrush="Red" BorderThickness="0.5" Background="White" CornerRadius="15">
+        <Border.Effect>
+            <DropShadowEffect Color="Black"
+                          Direction="320"
+                          BlurRadius="15"
+                          ShadowDepth="3" />
+        </Border.Effect>
+        <DockPanel LastChildFill="True" Background="Transparent">
+            <Grid DockPanel.Dock="Top" Height="25">
+                <TextBlock VerticalAlignment="Center" Text="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                       HorizontalAlignment="Center" />
+                <Image Source="../../../Imagenes/diseno_icono.png" VerticalAlignment="Top" Width="20" Height="20" Margin="5,3,293,0"/>
+                <Rectangle Name="titleBar"
+                       Fill="Transparent"
+                       MouseLeftButtonDown="titleBar_MouseLeftButtonDown"/>
+                <Button Name="closeButton"
+                    Style="{StaticResource CerrarStyle}"
+                    HorizontalAlignment="Right"
+                    Width="15" Margin="0,0,5,0" Height="15"
+                    Click="closeButton_Click"/>
+                <Button Name="minButton"
+                    Style="{StaticResource MinimizarStyle}"
+                    HorizontalAlignment="Right"
+                    Width="15" Margin="0,0,25,0" Height="9"
+                    Click="minButton_Click"/>
+            </Grid>
+            <Grid>
+                <Label Content="Cantidad" HorizontalAlignment="Left" Margin="44,15,0,0" VerticalAlignment="Top" FontSize="16"/>
+                <Button Content="Aceptar" Style="{StaticResource BotonAceptarStyle}" Name="Aceptar" HorizontalAlignment="Left" Margin="124,61,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="Aceptar_Click" IsDefault="True"/>
+                <TextBox MaxLength="4" Margin="126,14,44,61" HorizontalAlignment="Left" Name="txtCantidad" Height="31" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" PreviewTextInput="can_PreviewTextInput" PreviewKeyDown="can_PreviewKeyDown"/>
+            </Grid>
+        </DockPanel>
+    </Border>
+</Window>

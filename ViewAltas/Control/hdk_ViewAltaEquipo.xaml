@@ -1,0 +1,115 @@
+﻿<Window x:Class="HelpDesk.ViewAltas.Control.hdk_ViewAltaEquipo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ Title="Help Desk - Alta de equipos" Height="614.242" Width="973.587" FontSize="13"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        WindowStyle="None" Icon="/HelpDesk;component/Imagenes/diseno_icono.png"
+        AllowsTransparency="True" Background="Transparent">
+    <Border Margin="10" BorderBrush="Red" BorderThickness="0.5" CornerRadius="15" Background="White">
+        <Border.Effect>
+            <DropShadowEffect Color="Black"
+                          Direction="320"
+                          BlurRadius="15"
+                          ShadowDepth="3" />
+        </Border.Effect>
+        <DockPanel LastChildFill="True" Background="Transparent">
+            <Grid DockPanel.Dock="Top" Height="25">
+                <TextBlock Text="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                       HorizontalAlignment="Center" />
+                <Image Source="../../Imagenes/diseno_icono.png" VerticalAlignment="Top" Width="20" Height="20" Margin="10,3,923,0"/>
+                <Rectangle Name="titleBar"
+                       Fill="Transparent"
+                       MouseLeftButtonDown="titleBar_MouseLeftButtonDown"/>
+                <Button Name="closeButton"
+                    Style="{StaticResource CerrarStyle}"
+                    HorizontalAlignment="Right"
+                    Width="15" Margin="0,0,5,0" Height="15"
+                    Click="closeButton_Click"/>
+                <Button Name="minButton"
+                    Style="{StaticResource MinimizarStyle}"
+                    HorizontalAlignment="Right"
+                    Width="15" Margin="0,0,25,0" Height="9"
+                    Click="minButton_Click"/>
+            </Grid>
+            <Grid>
+                <Grid>
+                    <Label Content="Responsable" FontSize="16" HorizontalAlignment="Left" Margin="62,41,0,0" VerticalAlignment="Top"/>
+                    <ComboBox VerticalContentAlignment="Center" Background="{StaticResource GrayBlueGradientBrush}" HorizontalAlignment="Left" Name="cbResponsable" Margin="181,41,0,0" VerticalAlignment="Top" Width="455" Height="31" FontSize="15" LostFocus="cbResponsable_LostFocus"/>
+                    <Label Content="Tipo" FontSize="16" HorizontalAlignment="Left" Margin="660,41,0,0" VerticalAlignment="Top"/>
+                    <ComboBox Background="{StaticResource GrayBlueGradientBrush}" HorizontalAlignment="Left" x:Name="cbTipo" Margin="710,42,0,0" VerticalAlignment="Top" Width="184" Height="31" FontSize="15" SelectionChanged="cbTipo_SelectionChanged" LostFocus="cbTipo_LostFocus"/>
+                    <GroupBox Header="Capacidad" BorderBrush="Black" BorderThickness="1" FontSize="16" HorizontalAlignment="Left" Margin="61,99,0,0" VerticalAlignment="Top" Height="76" Width="833">
+                        <Grid>
+                            <Label Content="Procesador" FontSize="16" HorizontalAlignment="Left" Margin="9,5,0,0" VerticalAlignment="Top"/>
+                            <TextBox HorizontalAlignment="Left" Name="txtProcesador" MaxLength="4" Height="31" Margin="111,4,0,0" FontSize="15" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" IsEnabled="False" PreviewKeyDown="txtProcesador_PreviewKeyDown" KeyUp="txtProcesador_KeyUp"/>
+                            <Label Content="GHz" FontSize="16" HorizontalAlignment="Left" Margin="195,5,0,0" VerticalAlignment="Top" Width="45"/>
+                            <Label Content="Memoria RAM" FontSize="16" HorizontalAlignment="Left"  Margin="269,5,0,0" VerticalAlignment="Top"/>
+                            <TextBox HorizontalAlignment="Left" Name="txtRAM" Height="31" MaxLength="2" Margin="391,4,0,0" FontSize="15" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83" IsEnabled="False" PreviewTextInput="txtRAM_PreviewTextInput" PreviewKeyDown="txtRAM_PreviewKeyDown" KeyUp="txtRAM_KeyUp"/>
+                            <Label Content="GB" FontSize="16" HorizontalAlignment="Left" Margin="476,5,0,0" VerticalAlignment="Top" Width="45"/>
+                            <Label Content="Almacenamiento" FontSize="16" HorizontalAlignment="Left" Margin="542,4,0,0" VerticalAlignment="Top"/>
+                            <TextBox HorizontalAlignment="Left" Name="txtDD" Height="31" MaxLength="4" Margin="676,4,0,0" FontSize="15" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83" IsEnabled="False" PreviewTextInput="txtDD_PreviewTextInput" PreviewKeyDown="txtDD_PreviewKeyDown" KeyUp="txtDD_KeyUp"/>
+                            <ComboBox Name="cbMedida" HorizontalAlignment="Left" Margin="763,3,0,0" VerticalAlignment="Top" BorderBrush="Transparent" Width="43" Height="31" FontSize="15" Background="Transparent" />
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Header="Equipo" HorizontalAlignment="Left" Margin="61,183,0,270" VerticalAlignment="Center" Height="115" Width="407" FontSize="16" BorderBrush="Black" >
+                        <Grid>
+                            <Label Content="Marca" FontSize="16" HorizontalAlignment="Left" Margin="50,6,0,0" VerticalAlignment="Top"/>
+                            <ComboBox FontSize="15" Background="{StaticResource GrayBlueGradientBrush}" HorizontalAlignment="Left" Name="cbEquipo" Margin="121,7,0,0" VerticalAlignment="Top" Width="221" RenderTransformOrigin="0.5,0.5" Height="31" VerticalContentAlignment="Center" IsEnabled="False" LostFocus="cbEquipo_LostFocus"/>
+                            <Label Content="Serie" FontSize="16" HorizontalAlignment="Left" Margin="51,45,0,0" VerticalAlignment="Top"/>
+                            <TextBox FontSize="15" HorizontalAlignment="Left" MaxLength="25" Name="txtEquipo" Height="31" Margin="120,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="222" VerticalContentAlignment="Center" IsEnabled="False" PreviewTextInput="txtEquipo_PreviewTextInput" KeyUp="txtEquipo_KeyUp"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Monitor" HorizontalAlignment="Left" Margin="484,183,0,270" VerticalAlignment="Center" Height="115" Width="407" FontSize="16" BorderBrush="Black">
+                        <Grid>
+                            <Label Content="Marca" FontSize="16" HorizontalAlignment="Left" Margin="50,6,0,0" VerticalAlignment="Top"/>
+                            <ComboBox FontSize="15" Background="{StaticResource GrayBlueGradientBrush}" HorizontalAlignment="Left" Name="cbMonitor" Margin="122,7,0,0" VerticalAlignment="Top" Width="220" RenderTransformOrigin="0.5,0.5" Height="31" VerticalContentAlignment="Center" IsEnabled="False" LostFocus="cbMonitor_LostFocus"/>
+                            <Label Content="Serie" FontSize="16" HorizontalAlignment="Left" Margin="51,45,0,0" VerticalAlignment="Top"/>
+                            <TextBox FontSize="15" HorizontalAlignment="Left" Height="31" MaxLength="25" Name="txtMonitor" Margin="120,45,0,0"  TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="222" VerticalContentAlignment="Center" IsEnabled="False" PreviewTextInput="txtMonitor_PreviewTextInput" KeyUp="txtMonitor_KeyUp"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Teclado" HorizontalAlignment="Left" Margin="62,302,0,151" VerticalAlignment="Center" Height="115" Width="407" FontSize="16" BorderBrush="Black" >
+                        <Grid>
+                            <Label Content="Marca" FontSize="16" HorizontalAlignment="Left" Margin="50,6,0,0" VerticalAlignment="Top"/>
+                            <ComboBox FontSize="15" Background="{StaticResource GrayBlueGradientBrush}" HorizontalAlignment="Left" Name="cbTeclado" Margin="121,7,0,0" VerticalAlignment="Top" Width="221" RenderTransformOrigin="0.5,0.5" Height="31" VerticalContentAlignment="Center" IsEnabled="False" LostFocus="cbTeclado_LostFocus"/>
+                            <Label Content="Serie" FontSize="16" HorizontalAlignment="Left" Margin="51,45,0,0" VerticalAlignment="Top"/>
+                            <TextBox FontSize="15" HorizontalAlignment="Left" Name="txtTeclado" MaxLength="25" Height="31" Margin="120,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="222" VerticalContentAlignment="Center" IsEnabled="False" PreviewTextInput="txtTeclado_PreviewTextInput" KeyUp="txtTeclado_KeyUp"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Mouse" HorizontalAlignment="Left" Margin="485,301,0,153" VerticalAlignment="Center" Height="114" Width="407" FontSize="16" BorderBrush="Black" >
+                        <Grid>
+                            <Label Content="Marca" FontSize="16" HorizontalAlignment="Left" Margin="50,6,0,0" VerticalAlignment="Top"/>
+                            <ComboBox FontSize="15" Background="{StaticResource GrayBlueGradientBrush}" HorizontalAlignment="Left" Name="cbMouse" Margin="122,7,0,0" VerticalAlignment="Top" Width="220" RenderTransformOrigin="0.5,0.5" Height="31" VerticalContentAlignment="Center" IsEnabled="False" LostFocus="cbMouse_LostFocus"/>
+                            <Label Content="Serie" FontSize="16" HorizontalAlignment="Left" Margin="51,45,0,0" VerticalAlignment="Top"/>
+                            <TextBox FontSize="15" HorizontalAlignment="Left" Name="txtMouse" MaxLength="25"  Height="31" Margin="120,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="222" VerticalContentAlignment="Center" IsEnabled="False" PreviewTextInput="txtMouse_PreviewTextInput" KeyUp="txtMouse_KeyUp"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Red" HorizontalAlignment="Left" Margin="60,420,0,76" VerticalAlignment="Center" Height="72" Width="831" FontSize="16" BorderBrush="Black" >
+                        <Grid>
+                            <Label Content="IP" FontSize="16" HorizontalAlignment="Left" Margin="55,2,0,0" VerticalAlignment="Top"/>
+                            <Label Content="MAC" FontSize="16" HorizontalAlignment="Left" Margin="460,4,0,0" VerticalAlignment="Top"/>
+                            <TextBox HorizontalAlignment="Left" Height="31" MaxLength="3" Name="txtIp1" Margin="125,5,0,0" FontSize="15" TextWrapping="Wrap" Text="0" HorizontalContentAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="40" GotFocus="txtRed_GotFocus" IsEnabled="False" RenderTransformOrigin="0.55,0.323" PreviewTextInput="txtIp1_PreviewTextInput" PreviewKeyDown="txtIp1_PreviewKeyDown" KeyUp="txtIp1_KeyUp"/>
+                            <TextBox HorizontalAlignment="Left" Height="31" MaxLength="3" Name="txtIp2" Margin="187,5,0,0" FontSize="15" TextWrapping="Wrap" Text="0" HorizontalContentAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="40" GotFocus="txtRed_GotFocus" IsEnabled="False" PreviewTextInput="txtIp1_PreviewTextInput" PreviewKeyDown="txtIp1_PreviewKeyDown" KeyUp="txtIp1_KeyUp"/>
+                            <TextBox HorizontalAlignment="Left" Height="31" MaxLength="3" Name="txtIp3" Margin="245,5,0,0" FontSize="15" TextWrapping="Wrap" Text="0" HorizontalContentAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="40" GotFocus="txtRed_GotFocus" IsEnabled="False" PreviewTextInput="txtIp1_PreviewTextInput" PreviewKeyDown="txtIp1_PreviewKeyDown" KeyUp="txtIp1_KeyUp"/>
+                            <TextBox HorizontalAlignment="Left" Height="31" MaxLength="3" Name="txtIp4" Margin="304,5,0,0" FontSize="15" TextWrapping="Wrap" Text="0" HorizontalContentAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="40" GotFocus="txtRed_GotFocus" IsEnabled="False" PreviewTextInput="txtIp1_PreviewTextInput" PreviewKeyDown="txtIp1_PreviewKeyDown" KeyUp="txtIp1_KeyUp"/>
+                            <Label Content="." FontSize="16" HorizontalAlignment="Left" Margin="168,6,0,0" VerticalAlignment="Top"/>
+                            <Label Content="." FontSize="16" HorizontalAlignment="Left" Margin="230,5,0,0" VerticalAlignment="Top"/>
+                            <Label Content="." FontSize="16" HorizontalAlignment="Left" Margin="288,5,0,0" VerticalAlignment="Top"/>
+                            <TextBox HorizontalAlignment="Left" MaxLength="2" Height="31" Name="txtMac1" Margin="510,4,0,0" FontSize="15" TextWrapping="Wrap" Text="00"  HorizontalContentAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="39" GotFocus="txtRed_GotFocus" IsEnabled="False" RenderTransformOrigin="0.281,0.452" PreviewTextInput="txtMac1_PreviewTextInput" PreviewKeyDown="txtMac1_PreviewKeyDown" KeyUp="txtIp1_KeyUp"/>
+                            <Label Content="-" FontSize="16" HorizontalAlignment="Left" Margin="546,4,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Height="29" Width="16" />
+                            <TextBox HorizontalAlignment="Left" MaxLength="2" Height="31" Name="txtMac2" Margin="560,4,0,0" FontSize="15" TextWrapping="Wrap" Text="00" HorizontalContentAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="39" GotFocus="txtRed_GotFocus" IsEnabled="False" PreviewTextInput="txtMac1_PreviewTextInput" PreviewKeyDown="txtMac1_PreviewKeyDown" KeyUp="txtIp1_KeyUp"/>
+                            <Label Content="-" FontSize="16" HorizontalAlignment="Left" Margin="596,4,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Height="29" Width="16" />
+                            <TextBox HorizontalAlignment="Left" MaxLength="2" Height="31" Name="txtMac3" Margin="610,5,0,0" FontSize="15" TextWrapping="Wrap" Text="00" HorizontalContentAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="39" GotFocus="txtRed_GotFocus" IsEnabled="False" PreviewTextInput="txtMac1_PreviewTextInput" PreviewKeyDown="txtMac1_PreviewKeyDown" KeyUp="txtIp1_KeyUp"/>
+                            <TextBox HorizontalAlignment="Left" MaxLength="2" Height="31" Name="txtMac4" Margin="661,6,0,0" FontSize="15" TextWrapping="Wrap" Text="00" HorizontalContentAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="39" GotFocus="txtRed_GotFocus" IsEnabled="False" PreviewTextInput="txtMac1_PreviewTextInput" PreviewKeyDown="txtMac1_PreviewKeyDown" KeyUp="txtIp1_KeyUp"/>
+                            <TextBox HorizontalAlignment="Left" MaxLength="2" Height="31" Name="txtMac5" Margin="711,6,0,0" FontSize="15" TextWrapping="Wrap" Text="00" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="39" VerticalContentAlignment="Center" GotFocus="txtRed_GotFocus" IsEnabled="False" PreviewTextInput="txtMac1_PreviewTextInput" PreviewKeyDown="txtMac1_PreviewKeyDown" KeyUp="txtIp1_KeyUp"/>
+                            <TextBox HorizontalAlignment="Left" MaxLength="2" Height="31" Name="txtMac6" Margin="762,7,0,0" FontSize="15" TextWrapping="Wrap" Text="00" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="39" VerticalContentAlignment="Center" GotFocus="txtRed_GotFocus" IsEnabled="False" PreviewTextInput="txtMac1_PreviewTextInput" PreviewKeyDown="txtMac1_PreviewKeyDown" KeyUp="txtIp1_KeyUp"/>
+                            <Label Content="-" FontSize="16" HorizontalAlignment="Left" Margin="646,6,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Height="29" Width="16"  />
+                            <Label Content="-" FontSize="16" HorizontalAlignment="Left" Margin="697,6,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Height="29" Width="16" />
+                            <Label Content="-" FontSize="16" HorizontalAlignment="Left" Margin="747,6,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Height="29" Width="16" />
+                        </Grid>
+                    </GroupBox>
+                    <Button Content="Añadir" Style="{StaticResource BotonAceptarStyle}" FontSize="16" HorizontalAlignment="Left" Margin="440,510,0,0" VerticalAlignment="Top" Width="75" IsDefault="True" Name="btnAñadir" Click="Añadir_Click"/>
+                </Grid>
+            </Grid>
+        </DockPanel>
+    </Border>
+</Window>

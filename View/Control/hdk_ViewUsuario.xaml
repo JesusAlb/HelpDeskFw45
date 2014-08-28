@@ -1,0 +1,100 @@
+﻿<Window x:Class="HelpDesk.Usuarios.hdk_ViewUsuario"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Help Desk - Catálogo de usuarios" Height="441" Width="799" FontSize="13"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        WindowStyle="None" Icon="/HelpDesk;component/Imagenes/diseno_icono.png"
+        AllowsTransparency="True" Background="Transparent">
+
+    <Border Margin="10" BorderBrush="Red" BorderThickness="0.5" CornerRadius="15" Background="White">
+        <Border.Effect>
+            <DropShadowEffect Color="Black"
+                          Direction="320"
+                          BlurRadius="15"
+                          ShadowDepth="3" />
+        </Border.Effect>
+        <DockPanel LastChildFill="True" Background="Transparent">
+            <Grid DockPanel.Dock="Top" Height="25">
+                <TextBlock VerticalAlignment="Center" Text="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                       HorizontalAlignment="Center" />
+                <Image Source="../../Imagenes/diseno_icono.png" VerticalAlignment="Top" Width="20" Height="20" Margin="8,3,750,0"/>
+                <Rectangle Name="titleBar"
+                       Fill="Transparent"
+                       MouseLeftButtonDown="titleBar_MouseLeftButtonDown"/>
+                <Button Name="closeButton"
+                    Style="{StaticResource CerrarStyle}"
+                    HorizontalAlignment="Right"
+                    Width="15" Margin="0,0,5,0" Height="15"
+                    Click="closeButton_Click"/>
+                <Button Name="minButton"
+                    Style="{StaticResource MinimizarStyle}"
+                    HorizontalAlignment="Right"
+                    Width="15" Margin="0,0,25,0" Height="9"
+                    Click="minButton_Click"/>
+            </Grid>
+            <Grid>
+                <Border Margin="46,100,47,43" BorderBrush="Black" BorderThickness="0.6" CornerRadius="15">
+                    <Grid>
+                        <Border x:Name="BDRounded" BorderThickness="1" CornerRadius="15" BorderBrush="Transparent" Background="White"/>
+                        <DataGrid BorderBrush="Transparent" CanUserResizeColumns="False" AlternatingRowBackground="{StaticResource GrayBlueGradientBrush}" IsReadOnly="True" CanUserDeleteRows="False" 
+                                  CanUserAddRows="false" BorderThickness="0"  AutoGenerateColumns="False" EnableRowVirtualization="True"  ItemsSource="{Binding}" CanUserReorderColumns="False" GridLinesVisibility="Horizontal"
+                                  HorizontalAlignment="Left" Name="DataG" FontSize="15" VerticalAlignment="Top" Height="251" Width="683" CanUserResizeRows="False" CanUserSortColumns="False">
+                            <DataGrid.OpacityMask>
+                                <VisualBrush Visual="{Binding ElementName=BDRounded}"/>
+                            </DataGrid.OpacityMask>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Id" Binding="{Binding idUsuario}" />
+                                <DataGridTextColumn Header="Usuario" Binding="{Binding nomUsuario}" />
+                                <DataGridTextColumn Header="Nombre" Binding="{Binding nomCompleto}" />
+                                <DataGridTextColumn Header="Contraseña" Binding="{Binding password}" />
+                                <DataGridTextColumn Header="Tipo" Binding="{Binding tipoUsuarioString}" />
+                                <DataGridTextColumn Header="Ext. Teléfonica" Binding="{Binding exTel}" />
+                                <DataGridTextColumn Header="Correo" Binding="{Binding correo}" />
+                                <DataGridTextColumn Header="Institución" Binding="{Binding nomInstitucion}"/>
+                                <DataGridTextColumn Header="Coordinación" Binding="{Binding nomCoordinacion}" />
+                                <DataGridTextColumn Header="Departamento" Binding="{Binding nomDepto}" />
+                                <DataGridTextColumn Header="Área" Binding="{Binding nomArea}" />
+                                <DataGridTextColumn Header="Puesto" Binding="{Binding nomPuesto}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Border>
+                <Grid Background="#FAFAFA" HorizontalAlignment="Left" Height="80" Margin="2,4,0,0" VerticalAlignment="Top" Width="775">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="74*"/>
+                        <ColumnDefinition Width="67*"/>
+                        <ColumnDefinition Width="232*"/>
+                        <ColumnDefinition Width="26*"/>
+                        <ColumnDefinition Width="77*"/>
+                        <ColumnDefinition Width="77*"/>
+                        <ColumnDefinition Width="164*"/>
+                        <ColumnDefinition Width="58*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Buscar" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Height="28" Width="56" Margin="6,26,5,26" />
+                    <Image Source="../../Imagenes/IMCA IAP.png" HorizontalAlignment="Center" Height="67" VerticalAlignment="Center" Width="144" Grid.Column="6" />
+                    <TextBox Name="filtro" Height="32" TextWrapping="Wrap" Text="" VerticalAlignment="Center" KeyUp="filtro_KeyUp" HorizontalAlignment="Center" VerticalContentAlignment="Center" Width="214" Grid.Column="2" Margin="9,24"/>
+                    <Button Style="{StaticResource BotonStyle}" Name="Agregar" Height="70" Width="56" HorizontalAlignment="Center" VerticalAlignment="Center"  Click="Agregar_Click" Grid.Column="4">
+                        <Grid Height="64" Width="51">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="37*"/>
+                                <RowDefinition Height="12*"/>
+                            </Grid.RowDefinitions>
+                            <Image Source="../../Imagenes/Add.png" VerticalAlignment="Center"  />
+                            <Label BorderThickness="0" Foreground="Black" FontWeight="Bold" Content="Agregar" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10" Height="25"  Grid.Row="1" />
+                        </Grid>
+                    </Button>
+                    <Button Name="Actualizar" Style="{StaticResource BotonStyle}" Height="70" Width="56"  HorizontalAlignment="Center" VerticalAlignment="Center" Click="Actualizar_Click" Grid.Column="5">
+                        <Grid Height="64" Width="51">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="37*"/>
+                                <RowDefinition Height="12*"/>
+                            </Grid.RowDefinitions>
+                            <Image Source="../../Imagenes/Edit.png" VerticalAlignment="Center"  />
+                            <Label BorderThickness="0" Foreground="Black" FontWeight="Bold" Content="Editar" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10" Height="25"  Grid.Row="1" />
+                        </Grid>
+                    </Button>
+                </Grid>
+            </Grid>
+        </DockPanel>
+    </Border>
+</Window>

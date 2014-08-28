@@ -1,0 +1,41 @@
+﻿<Window x:Class="HelpDesk.ViewAltas.hdk_ViewAltaTipoIncidencia"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Help Desk - Alta de tipo de incidencia"  Height="146" Width="501" FontSize="13" 
+    WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        WindowStyle="None" Icon="/HelpDesk;component/Imagenes/diseno_icono.png"
+        AllowsTransparency="True" Background="Transparent">
+    <Border Margin="10" BorderBrush="Red" BorderThickness="0.5" Background="White" CornerRadius="15">
+        <Border.Effect>
+            <DropShadowEffect Color="Black"
+                          Direction="320"
+                          BlurRadius="15"
+                          ShadowDepth="3" />
+        </Border.Effect>
+        <DockPanel LastChildFill="True" Background="Transparent">
+            <Grid DockPanel.Dock="Top" Height="25">
+                <TextBlock VerticalAlignment="Center" Text="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                       HorizontalAlignment="Center" />
+                <Image Source="../../Imagenes/diseno_icono.png" VerticalAlignment="Top" Width="20" Height="20" Margin="4,5,456,0"/>
+                <Rectangle Name="titleBar"
+                       Fill="Transparent"
+                       MouseLeftButtonDown="titleBar_MouseLeftButtonDown"/>
+                <Button Name="closeButton"
+                    Style="{StaticResource CerrarStyle}"
+                    HorizontalAlignment="Right"
+                    Width="15" Margin="0,0,5,0" Height="15"
+                    Click="closeButton_Click"/>
+                <Button Name="minButton"
+                    Style="{StaticResource MinimizarStyle}"
+                    HorizontalAlignment="Right"
+                    Width="15" Margin="0,0,25,0" Height="9"
+                    Click="minButton_Click"/>
+            </Grid>
+            <Grid>
+                <Label Content="Nombre " HorizontalAlignment="Left" Margin="48,16,0,0" FontSize="16" VerticalAlignment="Top"/>
+                <TextBox Margin="120,16,48,53" VerticalContentAlignment="Center" MaxLength="25" Name="txtTipo" Height="31" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" PreviewTextInput="tipo_PreviewTextInput" KeyDown="tipo_KeyDown"/>
+                <Button Style="{StaticResource BotonAceptarStyle}" Content="Añadir" FontSize="16" Name="btnAñadir" HorizontalAlignment="Left" Margin="215,57,0,0"  VerticalAlignment="Top" Width="75" Click="añadir_Click"/>
+            </Grid>
+        </DockPanel>
+    </Border>
+</Window>

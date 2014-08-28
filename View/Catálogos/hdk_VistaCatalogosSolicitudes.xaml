@@ -1,0 +1,193 @@
+﻿<Window x:Class="HelpDesk.View.CatálogosConjuntados.hdk_VistaCatalogosSolicitudes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Help Desk - Catálogos para solicitudes" Height="450.383" Width="560.955" FontSize="13"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True" Background="Transparent" Icon="/HelpDesk;component/Imagenes/diseno_icono.png">
+    <Border Margin="10" BorderBrush="Red" BorderThickness="0.5" CornerRadius="15" Background="White">
+        <Border.Effect>
+            <DropShadowEffect Color="Black"
+                          Direction="320"
+                          BlurRadius="15"
+                          ShadowDepth="3" />
+        </Border.Effect>
+        <DockPanel LastChildFill="True" Background="Transparent">
+            <Grid DockPanel.Dock="Top" Height="25">
+                <TextBlock VerticalAlignment="Center" Text="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                       HorizontalAlignment="Center" />
+                <Image Source="../../Imagenes/diseno_icono.png" VerticalAlignment="Top" Width="20" Height="20" Margin="7,5,513,0"/>
+                <Rectangle Name="titleBar"
+                       Fill="Transparent"
+                       MouseLeftButtonDown="titleBar_MouseLeftButtonDown"/>
+                <Button Name="closeButton"
+                    Style="{StaticResource CerrarStyle}"
+                    HorizontalAlignment="Right"
+                    Width="15" Margin="0,0,5,0" Height="15"
+                    Click="closeButton_Click"/>
+                <Button Name="minButton"
+                    Style="{StaticResource MinimizarStyle}"
+                    HorizontalAlignment="Right"
+                    Width="15" Margin="0,0,25,0" Height="9"
+                    Click="minButton_Click"/>
+            </Grid>
+            <Grid>
+                <TabControl Height="383" VerticalAlignment="Top" Margin="12,6,10,0" Background="Transparent">
+                    <TabItem Name="tabTipoIncidencia" FontSize="16" Header="Tipos de incidentes" Background="{StaticResource GrayBlueGradientBrush}">
+                        <Grid Background="Transparent" Margin="0,0,0,-4">
+
+                            <Image Source="/HelpDesk;component/Imagenes/IMCA IAP.png" HorizontalAlignment="Left" Height="53" Margin="23,11,0,0" VerticalAlignment="Top" Width="136"/>
+
+                            <TextBox Name="txtFiltroTipoIncidente" Margin="179,23,87,246" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="31" TextWrapping="Wrap" Text="Buscar" Foreground="Gray" VerticalAlignment="Top" Width="241" KeyUp="txtFiltroTipoIncidente_KeyUp" GotFocus="txtFiltroTipoIncidente_GotFocus" LostFocus="txtFiltroTipoIncidente_LostFocus"/>
+
+                            <Border Margin="15,75,85,15" CornerRadius="15" BorderThickness="0.6" BorderBrush="Black">
+                                <Grid Margin="0,0,3,0">
+                                    <Border x:Name="BDRounded1" BorderThickness="1" CornerRadius="15" BorderBrush="Transparent" Background="White" Margin="0,0,86,0"/>
+                                    <DataGrid  CanUserResizeColumns="False" AlternatingRowBackground="{StaticResource GrayBlueGradientBrush}"    IsReadOnly="True" CanUserAddRows="false"   AutoGenerateColumns="False" EnableRowVirtualization="True"  ItemsSource="{Binding}" x:Name="dataGIncidente" Margin="0,0,-2,0" FontSize ="15" MinColumnWidth="18" BorderThickness="0" GridLinesVisibility="Horizontal">
+                                        <DataGrid.OpacityMask>
+                                            <VisualBrush Visual="{Binding ElementName=BDRounded1}"/>
+                                        </DataGrid.OpacityMask>
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Tipo" Binding="{Binding nomTipoIncidente}" MinWidth="350"  />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+                            </Border>
+                            <Grid Margin="438,-4,-3,0" Background="#FAFAFA"  >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="67*"/>
+                                    <RowDefinition Height="40*"/>
+                                    <RowDefinition Height="40*"/>
+                                    <RowDefinition Height="30*"/>
+                                </Grid.RowDefinitions>
+                                <Button  Style="{StaticResource BotonStyle}" x:Name="btnAñadirTipoIncidencia" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnAñadir_Click" Height="70"  Grid.Row="1"  Width="56">
+                                    <Grid Height="64" Width="51">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="37*"/>
+                                            <RowDefinition Height="12*"/>
+                                        </Grid.RowDefinitions>
+                                        <Image Source="../../Imagenes/Add.png" VerticalAlignment="Center"  />
+                                        <Label BorderThickness="0" Foreground="Black" FontWeight="Bold" Content="Agregar" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10" Height="25"  Grid.Row="1" />
+                                    </Grid>
+                                </Button>
+                                <Button Style="{StaticResource BotonStyle}" x:Name="btnModificarTipoIncidencia" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="btnModificar_Click" Grid.Row="2" Height="70" Width="56">
+                                    <Grid Height="64" Width="51">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="37*"/>
+                                            <RowDefinition Height="12*"/>
+                                        </Grid.RowDefinitions>
+                                        <Image Source="../../Imagenes/Edit.png" VerticalAlignment="Center"  />
+                                        <Label BorderThickness="0" Foreground="Black" FontWeight="Bold" Content="Editar" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10" Height="25"  Grid.Row="1" />
+                                    </Grid>
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Name="tabLugar" FontSize="16"  Header="Lugares" Background="{StaticResource GrayBlueGradientBrush}">
+                        <Grid Background="Transparent" Margin="0,0,0,-4">
+
+                            <Image Source="/HelpDesk;component/Imagenes/IMCA IAP.png" HorizontalAlignment="Left" Height="53" Margin="23,11,0,0" VerticalAlignment="Top" Width="136"/>
+
+                            <TextBox Name="txtFiltroLugar" Margin="179,23,87,246" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="31" TextWrapping="Wrap" Text="Buscar" Foreground="Gray" VerticalAlignment="Top" Width="241" KeyUp="txtFiltroLugar_KeyUp" LostFocus="txtFiltroLugar_LostFocus" GotFocus="txtFiltroLugar_GotFocus"/>
+
+                            <Border Margin="15,75,85,15" CornerRadius="15" BorderThickness="0.6" BorderBrush="Black">
+                                <Grid Margin="0,0,3,0">
+                                    <Border x:Name="BDRounded2" BorderThickness="1" CornerRadius="15" BorderBrush="Transparent" Background="White" Margin="0,0,86,0"/>
+                                    <DataGrid  CanUserResizeColumns="False" AlternatingRowBackground="{StaticResource GrayBlueGradientBrush}"    IsReadOnly="True" CanUserAddRows="false"   AutoGenerateColumns="False" EnableRowVirtualization="True"  ItemsSource="{Binding}" x:Name="dataGLugar" Margin="0,0,-2,0" FontSize ="15" MinColumnWidth="18" BorderThickness="0" GridLinesVisibility="Horizontal">
+                                        <DataGrid.OpacityMask>
+                                            <VisualBrush Visual="{Binding ElementName=BDRounded2}"/>
+                                        </DataGrid.OpacityMask>
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Lugar" Binding="{Binding nomLugar}" MinWidth="350" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+                            </Border>
+                            <Grid Margin="438,-4,-3,0" Background="#FAFAFA"  >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="67*"/>
+                                    <RowDefinition Height="40*"/>
+                                    <RowDefinition Height="40*"/>
+                                    <RowDefinition Height="30*"/>
+                                </Grid.RowDefinitions>
+                                <Button Style="{StaticResource BotonStyle}" x:Name="btnAñadirLugar" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnAñadir_Click" Height="70"  Grid.Row="1"  Width="56">
+                                    <Grid Height="64" Width="51">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="37*"/>
+                                            <RowDefinition Height="12*"/>
+                                        </Grid.RowDefinitions>
+                                        <Image Source="../../Imagenes/Add.png" VerticalAlignment="Center"  />
+                                        <Label BorderThickness="0" Foreground="Black" FontWeight="Bold" Content="Agregar" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10" Height="25"  Grid.Row="1" />
+                                    </Grid>
+                                </Button>
+                                <Button Style="{StaticResource BotonStyle}" x:Name="btnModificarLugar" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="btnModificar_Click" Grid.Row="2" Height="70" Width="56">
+                                    <Grid Height="64" Width="51">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="37*"/>
+                                            <RowDefinition Height="12*"/>
+                                        </Grid.RowDefinitions>
+                                        <Image Source="../../Imagenes/Edit.png" VerticalAlignment="Center"  />
+                                        <Label BorderThickness="0" Foreground="Black" FontWeight="Bold" Content="Editar" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10" Height="25"  Grid.Row="1" />
+                                    </Grid>
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Name="tabRequerimiento" FontSize="16"  Header="Requerimientos" Background="{StaticResource GrayBlueGradientBrush}">
+                        <Grid Background="Transparent" Margin="0,0,0,-4">
+
+                            <Image Source="/HelpDesk;component/Imagenes/IMCA IAP.png" HorizontalAlignment="Left" Height="53" Margin="23,11,0,0" VerticalAlignment="Top" Width="136"/>
+
+                            <TextBox Name="txtFiltroRequerimiento" Margin="179,8,0,0" VerticalContentAlignment="Center"  HorizontalAlignment="Left" Height="31" TextWrapping="Wrap" Text="Buscar" Foreground="Gray" VerticalAlignment="Top" Width="241" KeyUp="txtFiltroRequerimiento_KeyUp" LostFocus="txtFiltroRequerimiento_LostFocus" GotFocus="txtFiltroRequerimiento_GotFocus"/>
+
+                            <Border Margin="15,75,85,15" CornerRadius="15" BorderThickness="0.6" BorderBrush="Black">
+                                <Grid Margin="0,0,3,0">
+                                    <Border x:Name="BDRounded3" BorderThickness="1" CornerRadius="15" BorderBrush="Transparent" Background="White" Margin="0,0,86,0"/>
+                                    <DataGrid  CanUserResizeColumns="False" AlternatingRowBackground="{StaticResource GrayBlueGradientBrush}"    IsReadOnly="True" CanUserAddRows="false"   AutoGenerateColumns="False" EnableRowVirtualization="True"  ItemsSource="{Binding}" x:Name="dataGRequerimientos" Margin="0,0,-2,0" FontSize ="15" MinColumnWidth="18" BorderThickness="0" GridLinesVisibility="Horizontal">
+                                        <DataGrid.OpacityMask>
+                                            <VisualBrush Visual="{Binding ElementName=BDRounded3}"/>
+                                        </DataGrid.OpacityMask>
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Requerimiento" Binding="{Binding nomRequerimiento}" MinWidth="350"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+                            </Border>
+                            <Grid Margin="438,-4,-3,0" Background="#FAFAFA"  >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="67*"/>
+                                    <RowDefinition Height="40*"/>
+                                    <RowDefinition Height="40*"/>
+                                    <RowDefinition Height="30*"/>
+                                </Grid.RowDefinitions>
+                                <Button Style="{StaticResource BotonStyle}" x:Name="btnAñadirReq" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnAñadir_Click" Height="70"  Grid.Row="1"  Width="56">
+                                    <Grid Height="64" Width="51">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="37*"/>
+                                            <RowDefinition Height="12*"/>
+                                        </Grid.RowDefinitions>
+                                        <Image Source="../../Imagenes/Add.png" VerticalAlignment="Center"  />
+                                        <Label BorderThickness="0" Foreground="Black" FontWeight="Bold" Content="Agregar" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10" Height="25"  Grid.Row="1" />
+                                    </Grid>
+                                </Button>
+                                <Button Style="{StaticResource BotonStyle}" x:Name="btnModificarReq" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="btnModificar_Click" Grid.Row="2" Height="70" Width="56">
+                                    <Grid Height="64" Width="51">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="37*"/>
+                                            <RowDefinition Height="12*"/>
+                                        </Grid.RowDefinitions>
+                                        <Image Source="../../Imagenes/Edit.png" VerticalAlignment="Center"  />
+                                        <Label BorderThickness="0" Foreground="Black" FontWeight="Bold" Content="Editar" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10" Height="25"  Grid.Row="1" />
+                                    </Grid>
+                                </Button>
+                            </Grid>
+                            <CheckBox Name="ChCuantificable" Content="Cuantificable" HorizontalAlignment="Left" Margin="171,45,0,0" VerticalAlignment="Top" Checked="ChCuantificable_Checked" Unchecked="ChCuantificable_Unchecked"/>
+                            <CheckBox Name="ChNoCuantificable" Content="No cuantificable" HorizontalAlignment="Left" Margin="289,45,0,0" VerticalAlignment="Top" Checked="ChNoCuantificable_Checked" Unchecked="ChNoCuantificable_Unchecked"/>
+
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+        </DockPanel>
+    </Border>
+</Window>

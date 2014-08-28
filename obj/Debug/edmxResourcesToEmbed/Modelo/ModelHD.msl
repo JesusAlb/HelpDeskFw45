@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbhelpdeskModelStoreContainer" CdmEntityContainer="dbhelpdeskEntities">
+    <EntitySetMapping Name="tblareas">
+      <EntityTypeMapping TypeName="dbhelpdeskModel.tblarea">
+        <MappingFragment StoreEntitySet="tblarea">
+          <ScalarProperty Name="idArea" ColumnName="idArea" />
+          <ScalarProperty Name="nomArea" ColumnName="nomArea" />
+          <ScalarProperty Name="coordinacion" ColumnName="coordinacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblcoordinacions">
+      <EntityTypeMapping TypeName="dbhelpdeskModel.tblcoordinacion">
+        <MappingFragment StoreEntitySet="tblcoordinacion">
+          <ScalarProperty Name="idCoordinacion" ColumnName="idCoordinacion" />
+          <ScalarProperty Name="nomCoordinacion" ColumnName="nomCoordinacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbldepartamentos">
+      <EntityTypeMapping TypeName="dbhelpdeskModel.tbldepartamento">
+        <MappingFragment StoreEntitySet="tbldepartamentos">
+          <ScalarProperty Name="idDepto" ColumnName="idDepto" />
+          <ScalarProperty Name="nomDepto" ColumnName="nomDepto" />
+          <ScalarProperty Name="coordinacion" ColumnName="coordinacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbleventoes">
+      <EntityTypeMapping TypeName="dbhelpdeskModel.tblevento">
+        <MappingFragment StoreEntitySet="tblevento">
+          <ScalarProperty Name="idEvento" ColumnName="idEvento" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="solicitante" ColumnName="solicitante" />
+          <ScalarProperty Name="responsable" ColumnName="responsable" />
+          <ScalarProperty Name="apoyo" ColumnName="apoyo" />
+          <ScalarProperty Name="fecha_Sol" ColumnName="fecha_Sol" />
+          <ScalarProperty Name="lugar" ColumnName="lugar" />
+          <ScalarProperty Name="asistencia_aprox" ColumnName="asistencia_aprox" />
+          <ScalarProperty Name="tipo_evento" ColumnName="tipo_evento" />
+          <ScalarProperty Name="acomodo" ColumnName="acomodo" />
+          <ScalarProperty Name="horaIn" ColumnName="horaIn" />
+          <ScalarProperty Name="horaFn" ColumnName="horaFn" />
+          <ScalarProperty Name="fecha_cierre" ColumnName="fecha_cierre" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+          <ScalarProperty Name="FechaTermino" ColumnName="FechaTermino" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblincidentes">
+      <EntityTypeMapping TypeName="dbhelpdeskModel.tblincidente">
+        <MappingFragment StoreEntitySet="tblincidente">
+          <ScalarProperty Name="numIncidente" ColumnName="numIncidente" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="solicitante" ColumnName="solicitante" />
+          <ScalarProperty Name="prioridad" ColumnName="prioridad" />
+          <ScalarProperty Name="fecha_Sol" ColumnName="fecha_Sol" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="horaIn" ColumnName="horaIn" />
+          <ScalarProperty Name="horaFn" ColumnName="horaFn" />
+          <ScalarProperty Name="fecha_Cierre" ColumnName="fecha_Cierre" />
+          <ScalarProperty Name="soporte" ColumnName="soporte" />
+          <ScalarProperty Name="acciones" ColumnName="acciones" />
+          <ScalarProperty Name="solucion" ColumnName="solucion" />
+          <ScalarProperty Name="seguimiento" ColumnName="seguimiento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblmarcacpus">
+      <EntityTypeMapping TypeName="dbhelpdeskModel.tblmarcacpu">
+        <MappingFragment StoreEntitySet="tblmarcacpu">
+          <ScalarProperty Name="idMarcaCPU" ColumnName="idMarcaCPU" />
+          <ScalarProperty Name="marcaCPU" ColumnName="marcaCPU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblmarcamonitors">
+      <EntityTypeMapping TypeName="dbhelpdeskModel.tblmarcamonitor">
+        <MappingFragment StoreEntitySet="tblmarcamonitor">
+          <ScalarProperty Name="idMarcaMonitor" ColumnName="idMarcaMonitor" />
+          <ScalarProperty Name="nomMarcaMonitor" ColumnName="nomMarcaMonitor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblpuestoes">
+      <EntityTypeMapping TypeName="dbhelpdeskModel.tblpuesto">
+        <MappingFragment StoreEntitySet="tblpuesto">
+          <ScalarProperty Name="idPuesto" ColumnName="idPuesto" />
+          <ScalarProperty Name="area" ColumnName="area" />
+          <ScalarProperty Name="nomPuesto" ColumnName="nomPuesto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblrequerimientoaeventoes">
+      <EntityTypeMapping TypeName="dbhelpdeskModel.tblrequerimientoaevento">
+        <MappingFragment StoreEntitySet="tblrequerimientoaevento">
+          <ScalarProperty Name="evento" ColumnName="evento" />
+          <ScalarProperty Name="requerimiento" ColumnName="requerimiento" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblrequerimientos">
+      <EntityTypeMapping TypeName="dbhelpdeskModel.tblrequerimiento">
+        <MappingFragment StoreEntitySet="tblrequerimientos">
+          <ScalarProperty Name="idRequerimientos" ColumnName="idRequerimientos" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="nombreReq" ColumnName="nombreReq" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblresponsablequipoes">
+      <EntityTypeMapping TypeName="dbhelpdeskModel.tblresponsablequipo">
+        <MappingFragment StoreEntitySet="tblresponsablequipo">
+          <ScalarProperty Name="idResponEq" ColumnName="idResponEq" />
+          <ScalarProperty Name="responsable" ColumnName="responsable" />
+          <ScalarProperty Name="puesto" ColumnName="puesto" />
+          <ScalarProperty Name="tipoEquipo" ColumnName="tipoEquipo" />
+          <ScalarProperty Name="marcaCPU" ColumnName="marcaCPU" />
+          <ScalarProperty Name="serieCPU" ColumnName="serieCPU" />
+          <ScalarProperty Name="memoriaRam" ColumnName="memoriaRam" />
+          <ScalarProperty Name="discoDuro" ColumnName="discoDuro" />
+          <ScalarProperty Name="marcaMonitor" ColumnName="marcaMonitor" />
+          <ScalarProperty Name="serieMonitor" ColumnName="serieMonitor" />
+          <ScalarProperty Name="ip" ColumnName="ip" />
+          <ScalarProperty Name="mac" ColumnName="mac" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbltipoequipoes">
+      <EntityTypeMapping TypeName="dbhelpdeskModel.tbltipoequipo">
+        <MappingFragment StoreEntitySet="tbltipoequipo">
+          <ScalarProperty Name="idTipoEquipo" ColumnName="idTipoEquipo" />
+          <ScalarProperty Name="nomTipoEquipo" ColumnName="nomTipoEquipo" />
+          <ScalarProperty Name="siMonitor" ColumnName="siMonitor" />
+          <ScalarProperty Name="siCPU" ColumnName="siCPU" />
+          <ScalarProperty Name="siDiscoDuro" ColumnName="siDiscoDuro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbltipoincidencias">
+      <EntityTypeMapping TypeName="dbhelpdeskModel.tbltipoincidencia">
+        <MappingFragment StoreEntitySet="tbltipoincidencia">
+          <ScalarProperty Name="idTipo" ColumnName="idTipo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblusuarios">
+      <EntityTypeMapping TypeName="dbhelpdeskModel.tblusuario">
+        <MappingFragment StoreEntitySet="tblusuarios">
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="nomCompleto" ColumnName="nomCompleto" />
+          <ScalarProperty Name="nomUsuario" ColumnName="nomUsuario" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="tipoUsuario" ColumnName="tipoUsuario" />
+          <ScalarProperty Name="depto" ColumnName="depto" />
+          <ScalarProperty Name="exTel" ColumnName="exTel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewCoordinacions">
+      <EntityTypeMapping TypeName="dbhelpdeskModel.ViewCoordinacion">
+        <MappingFragment StoreEntitySet="ViewCoordinacion">
+          <ScalarProperty Name="idCoordinacion" ColumnName="idCoordinacion" />
+          <ScalarProperty Name="nomCoordinacion" ColumnName="nomCoordinacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewDepartamentos">
+      <EntityTypeMapping TypeName="dbhelpdeskModel.ViewDepartamento">
+        <MappingFragment StoreEntitySet="ViewDepartamentos">
+          <ScalarProperty Name="idDepto" ColumnName="idDepto" />
+          <ScalarProperty Name="nomDepto" ColumnName="nomDepto" />
+          <ScalarProperty Name="nomCoordinacion" ColumnName="nomCoordinacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewEventoConRequerimientos">
+      <EntityTypeMapping TypeName="dbhelpdeskModel.ViewEventoConRequerimiento">
+        <MappingFragment StoreEntitySet="ViewEventoConRequerimientos">
+          <ScalarProperty Name="evento" ColumnName="evento" />
+          <ScalarProperty Name="nombreReq" ColumnName="nombreReq" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="lugar" ColumnName="lugar" />
+          <ScalarProperty Name="asistencia_aprox" ColumnName="asistencia_aprox" />
+          <ScalarProperty Name="tipo_evento" ColumnName="tipo_evento" />
+          <ScalarProperty Name="acomodo" ColumnName="acomodo" />
+          <ScalarProperty Name="horaIn" ColumnName="horaIn" />
+          <ScalarProperty Name="horaFn" ColumnName="horaFn" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+          <ScalarProperty Name="FechaTermino" ColumnName="FechaTermino" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewRequerimientos">
+      <EntityTypeMapping TypeName="dbhelpdeskModel.ViewRequerimiento">
+        <MappingFragment StoreEntitySet="ViewRequerimientos">
+          <ScalarProperty Name="idRequerimientos" ColumnName="idRequerimientos" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="nombreReq" ColumnName="nombreReq" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewTipoIncidencias">
+      <EntityTypeMapping TypeName="dbhelpdeskModel.ViewTipoIncidencia">
+        <MappingFragment StoreEntitySet="ViewTipoIncidencia">
+          <ScalarProperty Name="idTipo" ColumnName="idTipo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewUsuarios">
+      <EntityTypeMapping TypeName="dbhelpdeskModel.ViewUsuario">
+        <MappingFragment StoreEntitySet="ViewUsuarios">
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="nomCompleto" ColumnName="nomCompleto" />
+          <ScalarProperty Name="nomUsuario" ColumnName="nomUsuario" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="tipoUsuario" ColumnName="tipoUsuario" />
+          <ScalarProperty Name="exTel" ColumnName="exTel" />
+          <ScalarProperty Name="nomDepto" ColumnName="nomDepto" />
+          <ScalarProperty Name="nomCoordinacion" ColumnName="nomCoordinacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="EventosXStatus" FunctionName="dbhelpdeskModel.Store.EventosXStatus">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbhelpdeskModel.EventosXStatus_Result">
+          <ScalarProperty Name="idEvento" ColumnName="idEvento" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="solicitante" ColumnName="solicitante" />
+          <ScalarProperty Name="responsable" ColumnName="responsable" />
+          <ScalarProperty Name="apoyo" ColumnName="apoyo" />
+          <ScalarProperty Name="fecha_Sol" ColumnName="fecha_Sol" />
+          <ScalarProperty Name="lugar" ColumnName="lugar" />
+          <ScalarProperty Name="asistencia_aprox" ColumnName="asistencia_aprox" />
+          <ScalarProperty Name="tipo_evento" ColumnName="tipo_evento" />
+          <ScalarProperty Name="acomodo" ColumnName="acomodo" />
+          <ScalarProperty Name="horaIn" ColumnName="horaIn" />
+          <ScalarProperty Name="horaFn" ColumnName="horaFn" />
+          <ScalarProperty Name="fecha_cierre" ColumnName="fecha_cierre" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+          <ScalarProperty Name="FechaTermino" ColumnName="FechaTermino" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="IncidentesXStatus" FunctionName="dbhelpdeskModel.Store.IncidentesXStatus">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbhelpdeskModel.IncidentesXStatus_Result">
+          <ScalarProperty Name="numIncidente" ColumnName="numIncidente" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="solicitante" ColumnName="solicitante" />
+          <ScalarProperty Name="prioridad" ColumnName="prioridad" />
+          <ScalarProperty Name="fecha_Sol" ColumnName="fecha_Sol" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="horaIn" ColumnName="horaIn" />
+          <ScalarProperty Name="horaFn" ColumnName="horaFn" />
+          <ScalarProperty Name="fecha_Cierre" ColumnName="fecha_Cierre" />
+          <ScalarProperty Name="soporte" ColumnName="soporte" />
+          <ScalarProperty Name="acciones" ColumnName="acciones" />
+          <ScalarProperty Name="solucion" ColumnName="solucion" />
+          <ScalarProperty Name="seguimiento" ColumnName="seguimiento" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ReqAsignados" FunctionName="dbhelpdeskModel.Store.ReqAsignados">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbhelpdeskModel.ReqAsignados_Result">
+          <ScalarProperty Name="nombreReq" ColumnName="nombreReq" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UltimoEvento" FunctionName="dbhelpdeskModel.Store.UltimoEvento" />
+  </EntityContainerMapping>
+</Mapping>
